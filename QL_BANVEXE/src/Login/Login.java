@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package Login;
+import KhachHang.MuaaVe;
 import java.sql.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import NhanVien.Connect;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JTextField;
 /**
  *
  * @author ADMIN
@@ -120,6 +124,20 @@ public class Login extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jTextFieldDKTK = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldDKNS = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldDKTen = new javax.swing.JTextField();
+        jTextFieldDKDC = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldDKSDT = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldDKMK = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jButtonDangKy = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -130,6 +148,93 @@ public class Login extends javax.swing.JDialog {
         btnThoat = new javax.swing.JButton();
         txtTenDN = new javax.swing.JTextField();
         txtMK = new javax.swing.JTextField();
+        btnDangKy = new javax.swing.JButton();
+
+        jLabel8.setText("Tài khoản");
+
+        jLabel9.setText("Ngày sinh");
+
+        jLabel5.setText("Tên ");
+
+        jLabel10.setText("Địa chỉ");
+
+        jLabel6.setText("SDT");
+
+        jLabel7.setText("Mật khẩu");
+
+        jButtonDangKy.setText("Đăng ký");
+        jButtonDangKy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDangKyActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDKSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDKTen, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDKTK, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDKDC)
+                            .addComponent(jTextFieldDKNS)
+                            .addComponent(jTextFieldDKMK))))
+                .addGap(82, 82, 82))
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDKDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jButtonDangKy)
+                .addGap(24, 24, 24))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -182,9 +287,24 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
-        txtTenDN.addActionListener(new java.awt.event.ActionListener() {
+        txtTenDN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTenDNMouseClicked(evt);
+            }
+        });
+
+        txtMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMKMouseClicked(evt);
+            }
+        });
+
+        btnDangKy.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDangKy.setForeground(new java.awt.Color(0, 0, 204));
+        btnDangKy.setText("ĐĂNG KÝ");
+        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenDNActionPerformed(evt);
+                btnDangKyActionPerformed(evt);
             }
         });
 
@@ -196,25 +316,25 @@ public class Login extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jlbName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(btnLogin)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jlbName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnDangKy)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(btnLogin)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,16 +369,13 @@ public class Login extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThoat)
-                    .addComponent(btnLogin))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(btnLogin)
+                    .addComponent(btnDangKy))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtTenDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenDNActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
@@ -270,7 +387,7 @@ public class Login extends javax.swing.JDialog {
         //=========================================================
         if(txtTenDN.getText().trim().equals("")){
             txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
-            txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
+            txtTenDN.setHorizontalAlignment(JTextField.RIGHT);
             txtTenDN.setForeground(Color.red);
             txtTenDN.setText("!");
         }
@@ -280,10 +397,14 @@ public class Login extends javax.swing.JDialog {
             txtMK.setForeground(Color.red);
             txtMK.setText("!");
         }
-        if(txtTenDN.getText().trim()!=null&&txtMK.getText().trim()!=null){
-            if(ktUser(txtTenDN.getText(),txtMK.getText())==1){
+        String taiKhoan=txtTenDN.getText().trim();
+        String matKhau=txtMK.getText().trim();
+        if(taiKhoan!=null&&matKhau!=null&&taiKhoan!="!"&&matKhau!="!"){
+            if(ktUser(taiKhoan,matKhau)==1){
                 //da dang nhap duoc
                 System.out.println("dang nhap duoc");
+                this.dispose();
+                new MuaaVe(taiKhoan).setVisible(true);
 //                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
 //                this.dispose();
             }
@@ -299,6 +420,62 @@ public class Login extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtTenDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDNMouseClicked
+        // TODO add your handling code here:
+        if(txtTenDN.getText().equals("!")){
+            txtTenDN.setText("");
+            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            txtTenDN.setHorizontalAlignment(JTextField.LEFT);
+            txtTenDN.setForeground(Color.black);
+        
+        }
+    }//GEN-LAST:event_txtTenDNMouseClicked
+
+    private void txtMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMKMouseClicked
+        // TODO add your handling code here:
+        if(txtMK.getText().equals("!")){
+            txtMK.setText("");
+            txtMK.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            txtMK.setHorizontalAlignment(JTextField.LEFT);
+            txtMK.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtMKMouseClicked
+
+    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        jDialog1.setSize(400, 400);
+        jDialog1.setLocation(400, 300);
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_btnDangKyActionPerformed
+
+    private void jButtonDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDangKyActionPerformed
+        // TODO add your handling code here:
+        String sdt=jTextFieldDKSDT.getText().trim();
+        String ten=jTextFieldDKTen.getText().trim();
+        String tk=jTextFieldDKTK.getText().trim();
+        String matKhau=jTextFieldDKMK.getText().trim();
+        java.util.Date ngaysinh=null;
+        try {
+            ngaysinh= new SimpleDateFormat("dd/MM/yyyy").parse(jTextFieldDKNS.getText());
+        } catch (ParseException ex) {
+            System.out.println("loi lay ngay");
+        }
+        System.out.println(ngaysinh);
+
+        String diachi=jTextFieldDKDC.getText().trim();
+
+        if(kiemTraTaiKhoan(tk)==0&&kiemTraSDT(sdt)==0&&tk!=null&&ten!=null&&sdt!=null&&matKhau!=null&&ngaysinh!=null&&diachi!=null){
+            luuTaiKhoan(tk, ten, sdt, matKhau,ngaysinh,diachi);
+            System.out.println("Dang ki tai khoan thanh cong. Moi dang nhap.");
+            JOptionPane.showMessageDialog(this, "Dang ki tai khoan thanh cong. Moi dang nhap.");
+            jDialog1.dispose();
+            this.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Tai khoan da ton tai hoac thieu thong tin");
+        }
+    }//GEN-LAST:event_jButtonDangKyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,13 +520,28 @@ public class Login extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JButton jButtonDangKy;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextFieldDKDC;
+    private javax.swing.JTextField jTextFieldDKMK;
+    private javax.swing.JTextField jTextFieldDKNS;
+    private javax.swing.JTextField jTextFieldDKSDT;
+    private javax.swing.JTextField jTextFieldDKTK;
+    private javax.swing.JTextField jTextFieldDKTen;
     private javax.swing.JLabel jlbName;
     private javax.swing.JTextField txtMK;
     private javax.swing.JTextField txtTenDN;

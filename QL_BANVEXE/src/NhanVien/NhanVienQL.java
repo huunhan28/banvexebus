@@ -16,6 +16,7 @@ public class NhanVienQL {
     }
 
     public NhanVienQL(String maNV, String hoTen, String SDT, String ngaySinh, String gioiTinh, String diaChi, String chucVu) {
+        
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.SDT = SDT;
