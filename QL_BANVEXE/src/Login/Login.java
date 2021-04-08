@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package Login;
-
+import java.sql.*;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-
+import NhanVien.Connect;
 /**
  *
  * @author ADMIN
@@ -19,8 +21,96 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
-
+    public int ktUser(String email,String pass){
+        int ok=0;
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select * from TaiKhoan");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+               
+               if(rs.getString(1).equalsIgnoreCase(email)&&rs.getString(2).equalsIgnoreCase(pass)) {
+                   if(rs.getString(3).equals("KH")){
+                       ok = 1;
+                       break;
+                   }else if(rs.getString(3).equals("AD")){
+                       ok = 2;
+                       break;
+                   }
+                   
+               }else{
+                   ok = 0;
+               }
+            }
+            
+        }catch(SQLException e){
+            System.out.println("loi lay tuyen");
+        }
+        return ok;
+    }
+    public int kiemTraTaiKhoan(String tk){
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select TaiKhoan from TaiKhoan");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString("TaiKhoan").equalsIgnoreCase(tk)){
+                    return 1;
+                }
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay Tai Khoan");
+        }
+        return 0;
+    }
+    public int kiemTraSDT(String sdt){
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select SDT from KhachHang");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString("SDT").equalsIgnoreCase(sdt)){
+                    return 1;
+                }
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay sdt");
+        }
+        return 0;
+    }
+    public void luuTaiKhoan(String tk,String ten,String sdt,String matKhau,java.util.Date ngaysinh,String diachi){
+        Connection ketNoi=Connect.layKetNoi();
+        
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("insert into KhachHang values(?,?,?,?,?)");
+                ps.setString(1, sdt);
+                ps.setString(2, ten);
+                ps.setDate(3, new Date(ngaysinh.getTime()));
+                ps.setString(4, diachi);
+                ps.setString(5, tk);
+                
+                
+                ps.executeUpdate();
+            }catch(SQLException e){
+                System.out.println("loi luu khach hang");
+            }
+            
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("insert into TaiKhoan values(?,?,?,?)");
+                
+                ps.setString(1, tk);
+                ps.setString(2, matKhau);
+                ps.setString(3, "KH");
+                ps.setString(4, sdt);
+                ps.executeUpdate();
+            }catch(SQLException e){
+                System.out.println("loi luu tai khoan");
+            }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,19 +267,36 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        String name="";
-        String pass="  ";
-        
-         if (txtTenDN.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tên đăng nhập không được bỏ trống !");
-            
+        //=========================================================
+        if(txtTenDN.getText().trim().equals("")){
+            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
+            txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
+            txtTenDN.setForeground(Color.red);
+            txtTenDN.setText("!");
         }
-        if (txtMK.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mật khẩu không được bỏ trống !");
-            
-        }   
-        txtTenDN.setText("");
-        txtMK.setText("");
+        if(txtMK.getText().trim().equals("")){
+            txtMK.setBorder(BorderFactory.createLineBorder(Color.red));
+            txtMK.setHorizontalAlignment(txtMK.RIGHT);
+            txtMK.setForeground(Color.red);
+            txtMK.setText("!");
+        }
+        if(txtTenDN.getText().trim()!=null&&txtMK.getText().trim()!=null){
+            if(ktUser(txtTenDN.getText(),txtMK.getText())==1){
+                //da dang nhap duoc
+                System.out.println("dang nhap duoc");
+//                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
+//                this.dispose();
+            }
+            else if(ktUser(txtTenDN.getText(),txtMK.getText())==2){
+                //dang nhap tu cach admin
+                
+//                new quanli().setVisible(true);
+//                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
+                System.out.println("sai thong tin dang nhap");
+            }
+        }
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
