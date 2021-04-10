@@ -52,11 +52,11 @@ public class ChuyenManHinhController {
         
     }
 
-    public void setEvent(List<DanhMucBean> listItem){
+    public void setEvent(List<DanhMucBean> listItem,java.lang.String taiKhoan){
         this.listItem= listItem;
         for( DanhMucBean item: listItem)
         {
-            item.getJlb().addMouseListener((MouseListener) new LabelEvent(item.getKind(),item.getJpn(),item.getJlb()));
+            item.getJlb().addMouseListener((MouseListener) new LabelEvent(item.getKind(),item.getJpn(),item.getJlb(),taiKhoan));
         } 
         
     }
@@ -67,12 +67,14 @@ public class ChuyenManHinhController {
         private JPanel jpnItem;
         private JPanel node;
         private JLabel jlbItem;
+        private  String taiKhoan;
 
-        public LabelEvent(String kind, JPanel jpnItem, JLabel jlbItem) {
+        public LabelEvent(String kind, JPanel jpnItem, JLabel jlbItem,String taiKhoan) {
             this.kind = kind;
             this.jpnItem = jpnItem;
           
             this.jlbItem = jlbItem;
+            this.taiKhoan=taiKhoan;
         }
         
         
@@ -83,17 +85,17 @@ public class ChuyenManHinhController {
                    node = new TrangChuJPanel();
                     break;
                 case "NhanVien":
-                   node = new NhanVienJPanel();
+                   node = new NhanVienJPanel(taiKhoan);
                    
                     break;
                 case "ChuyenXe":
-                   node = new ChuyenXe();
+                   node = new ChuyenXe(taiKhoan);
                    break;
                 case "VeXe":
-                   node = new VeXeJPanel();
+                   node = new VeXeJPanel(taiKhoan);
                     break;
                 case "ThongKe":
-                   node = new ThongKe();
+                   node = new ThongKe(taiKhoan);
                    
                     break;
                 default:
@@ -132,7 +134,7 @@ public class ChuyenManHinhController {
         public void mouseExited(MouseEvent e) {
              if(!kindSelected.equalsIgnoreCase(kind)){
                jlbItem.setBackground(new Color(91,100,191));
-           jpnItem.setBackground(new Color(91,100,191));
+                jpnItem.setBackground(new Color(91,100,191));
            }
        
         }

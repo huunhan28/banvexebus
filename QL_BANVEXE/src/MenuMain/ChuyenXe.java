@@ -14,7 +14,7 @@ public class ChuyenXe extends javax.swing.JPanel {
     /**
      * Creates new form ChuyenXeJPanel
      */
-    public ChuyenXe() {
+    public ChuyenXe(String taiKhoan) {
         initComponents();
     }
 

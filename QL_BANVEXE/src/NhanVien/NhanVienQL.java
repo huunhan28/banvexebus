@@ -10,7 +10,7 @@ package NhanVien;
  * @author ADMIN
  */
 public class NhanVienQL {
-    private String maNV,hoTen,SDT,ngaySinh,gioiTinh,diaChi,chucVu;
+    private String maNV,tenNV,ngaySinh,diaChi,chucVu;
 
     public NhanVienQL() {
     }
@@ -18,10 +18,8 @@ public class NhanVienQL {
     public NhanVienQL(String maNV, String hoTen, String SDT, String ngaySinh, String gioiTinh, String diaChi, String chucVu) {
         
         this.maNV = maNV;
-        this.hoTen = hoTen;
-        this.SDT = SDT;
+        this.tenNV = hoTen;
         this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
         this.diaChi = diaChi;
         this.chucVu = chucVu;
     }
@@ -35,19 +33,11 @@ public class NhanVienQL {
     }
 
     public String getHoTen() {
-        return hoTen;
+        return tenNV;
     }
 
     public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+        this.tenNV = hoTen;
     }
 
     public String getNgaySinh() {
@@ -56,14 +46,6 @@ public class NhanVienQL {
 
     public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
-    }
-
-    public String getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
     }
 
     public String getDiaChi() {

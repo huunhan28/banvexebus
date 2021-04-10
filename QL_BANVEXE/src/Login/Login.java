@@ -5,6 +5,7 @@
  */
 package Login;
 import KhachHang.MuaaVe;
+import MenuMain.MainMenu;
 import java.sql.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -411,7 +412,8 @@ public class Login extends javax.swing.JDialog {
             }
             else if(ktUser(txtTenDN.getText(),txtMK.getText())==2){
                 //dang nhap tu cach admin
-                
+                this.dispose();
+                new MainMenu(taiKhoan).setVisible(true);
 //                new quanli().setVisible(true);
 //                this.dispose();
             }else{

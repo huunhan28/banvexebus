@@ -14,7 +14,7 @@ public class VeXeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form QLVe
      */
-    public VeXeJPanel() {
+    public VeXeJPanel(String taiKhoan) {
         initComponents();
     }
 

@@ -14,7 +14,7 @@ public class ThongKe extends javax.swing.JPanel {
     /**
      * Creates new form ThongKe
      */
-    public ThongKe() {
+    public ThongKe(String taiKhoan) {
         initComponents();
     }
 
