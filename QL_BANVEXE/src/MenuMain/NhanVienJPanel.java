@@ -613,12 +613,12 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             return;
         }
         }
-        if (txtMaNV.getText().equals("")) {
+        if (txtTenNV.getText().equals("")) {
             ab.append(" Tên nhân viên không được bỏ trống  !");
-            txtMaNV.setBackground(Color.red);
+            txtTenNV.setBackground(Color.red);
         } else {
             // txtMaNV.setBackground(Color.WHITE);
-            txtMaNV.setBackground(Color.WHITE);
+            txtTenNV.setBackground(Color.WHITE);
         }
         if (ab.length() > 0) {
             JOptionPane.showMessageDialog(this, ab);
@@ -631,7 +631,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         try {
             NhanVienQL tk = new NhanVienQL();
             tk.setMaNV(txtMaNV.getText());
-            tk.setHoTen(txtMaNV.getText());
+            tk.setHoTen(txtTenNV.getText());
            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
             String date=sdf.format(jDateChooserNSNV.getDate());
             tk.setNgaySinh(date);
