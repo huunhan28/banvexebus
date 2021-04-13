@@ -335,7 +335,7 @@ public class Login extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLogin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -373,7 +373,7 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(btnThoat))
                 .addGap(27, 27, 27)
                 .addComponent(jLabelDangKy)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

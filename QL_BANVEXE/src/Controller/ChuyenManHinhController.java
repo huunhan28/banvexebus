@@ -133,8 +133,8 @@ public class ChuyenManHinhController {
         @Override
         public void mouseExited(MouseEvent e) {
              if(!kindSelected.equalsIgnoreCase(kind)){
-               jlbItem.setBackground(new Color(91,100,191));
-                jpnItem.setBackground(new Color(91,100,191));
+               jlbItem.setBackground(new Color(102,153,255));
+                jpnItem.setBackground(new Color(102,153,255));
            }
        
         }

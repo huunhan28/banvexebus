@@ -853,8 +853,15 @@ public class MuaaVe extends javax.swing.JFrame {
             String month=date.substring(5, 7);
             String day=date.substring(8, 10);
             System.out.println(year+"-"+month+"-"+day);
-
-            String maChuyen=day+month+year+"-"+chuyen+"-"+tuyen;
+            
+            String trangThai="";
+            if(trangThaiDi==true){
+                trangThai="1";
+            }else{
+                trangThai="0";
+            }
+            
+            String maChuyen=day+month+year+"-"+chuyen+"-"+tuyen+"-"+trangThai;
             System.out.println(maChuyen);
             //lay ma ve
             int maVe=layMaxMaVe()+1;
