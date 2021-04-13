@@ -6,7 +6,7 @@
 package KhachHang;
 
 import Login.Login;
-import NhanVien.Connect;
+import Controller.Connect;
 import java.awt.Color;
 import static java.lang.Math.*;
 import java.sql.*;

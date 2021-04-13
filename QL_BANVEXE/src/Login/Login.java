@@ -10,7 +10,7 @@ import java.sql.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import NhanVien.Connect;
+import Controller.Connect;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JTextField;
