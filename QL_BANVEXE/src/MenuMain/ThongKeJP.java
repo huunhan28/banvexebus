@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */ 
     
 public class ThongKeJP extends javax.swing.JPanel {
-public DefaultTableModel dtm;
+    public DefaultTableModel dtm;
     /**
      * Creates new form ThongKe
      */

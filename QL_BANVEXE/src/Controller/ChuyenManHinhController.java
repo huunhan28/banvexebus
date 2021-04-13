@@ -96,7 +96,12 @@ public class ChuyenManHinhController {
                     break;
                 case "ThongKe":
                    node = new ThongKeJP(taiKhoan);
-                   
+                    break;
+                case "TuyenXe":
+                   node =new Tuyen(taiKhoan);
+                    break;
+                case "CaLamViec":
+                   node = new CaLamViec(taiKhoan);
                     break;
                 default:
                      node = new TrangChuJPanel();

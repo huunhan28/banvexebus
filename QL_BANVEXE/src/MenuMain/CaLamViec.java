@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package MenuMain;
-
 import Controller.Connect;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author Huu Nhan
  */
-public class CaLamViec extends javax.swing.JFrame {
+public class CaLamViec extends javax.swing.JPanel {
     DefaultTableModel dtm;
     /**
-     * Creates new form CaLamViec
+     * Creates new form CaLamViec1
      */
-    public CaLamViec() {
+    public CaLamViec(String taiKhoan) {
         initComponents();
         layChuyen();
         layNhanVien();
@@ -27,7 +26,7 @@ public class CaLamViec extends javax.swing.JFrame {
         layCaLamViec();
         layChuyenXeChuaPhanCong();
     }
-    void layChuyenXeChuaPhanCong(){
+void layChuyenXeChuaPhanCong(){
         dtm= (DefaultTableModel) jTableChuyenXeChuaDuocPhanCong.getModel();
         dtm.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -207,6 +206,7 @@ public class CaLamViec extends javax.swing.JFrame {
         
         return trung;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -254,8 +254,6 @@ public class CaLamViec extends javax.swing.JFrame {
         jComboBoxCLVBS = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -376,7 +374,8 @@ public class CaLamViec extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
@@ -585,7 +584,7 @@ public class CaLamViec extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(40, 40, 40)
                 .addComponent(btnThem)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -603,31 +602,25 @@ public class CaLamViec extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(2, 2, 2)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldTKCaLamViecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTKCaLamViecKeyReleased
@@ -662,6 +655,18 @@ public class CaLamViec extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldTKCaLamViecKeyReleased
 
+    private void jTableCaLamViecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCaLamViecMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model= (DefaultTableModel)jTableCaLamViec.getModel();
+        int selectedRow = jTableCaLamViec.getSelectedRow();
+
+        jTextFieldCLVMaCa.setText(model.getValueAt(selectedRow, 0).toString());
+        jComboBoxCLVCX.setSelectedItem(model.getValueAt(selectedRow, 1).toString());
+        jComboBoxCLVNV.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
+        jComboBoxCLVBS.setSelectedItem(model.getValueAt(selectedRow, 3).toString());
+
+    }//GEN-LAST:event_jTableCaLamViecMouseClicked
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String maCa=jTextFieldCLVMaCa.getText().trim();
         if(kiemTraMaCa(maCa)==1){
@@ -677,7 +682,7 @@ public class CaLamViec extends javax.swing.JFrame {
         ngay=thongTin[0];
         tuyen=thongTin[2];
         trangThai=thongTin[3];
-            
+
         String maNV=(String) jComboBoxCLVNV.getSelectedItem();
         String bienSoXe=(String) jComboBoxCLVBS.getSelectedItem();
         String thoiGianKhoiHanh=thongTin[1];
@@ -710,7 +715,7 @@ public class CaLamViec extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nhan vien nay thoi diem nay da den cuoi tram. Khong the phan cong");
             return;
         }
-                
+
         if(kTTrungTuyenNgayTTTGXe(tuyen,ngay,trangThai,thoiGianKhoiHanh,thoiGianDen,bienSoXe)==1){
             JOptionPane.showMessageDialog(this, "Xe nay vao thoi diem nay da den cuoi tram. Khong the phan cong");
             return;
@@ -735,52 +740,6 @@ public class CaLamViec extends javax.swing.JFrame {
         layChuyenXeChuaPhanCong();
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void jTableCaLamViecMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCaLamViecMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel model= (DefaultTableModel)jTableCaLamViec.getModel();
-        int selectedRow = jTableCaLamViec.getSelectedRow();
-        
-        jTextFieldCLVMaCa.setText(model.getValueAt(selectedRow, 0).toString());
-        jComboBoxCLVCX.setSelectedItem(model.getValueAt(selectedRow, 1).toString());
-        jComboBoxCLVNV.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
-        jComboBoxCLVBS.setSelectedItem(model.getValueAt(selectedRow, 3).toString());
-        
-    }//GEN-LAST:event_jTableCaLamViecMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CaLamViec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CaLamViec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CaLamViec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CaLamViec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CaLamViec().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThem;
