@@ -5,7 +5,7 @@
  */
 package MenuMain;
 
-import NhanVien.Connect;
+import Controller.Connect;
 import java.sql.*;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -13,14 +13,10 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author ADMIN
- */
-<<<<<<< HEAD:QL_BANVEXE/src/MenuMain/ThongKe.java
-public class ThongKe extends javax.swing.JPanel {
-    public DefaultTableModel dtm;
-=======
+ */ 
+    
 public class ThongKeJP extends javax.swing.JPanel {
-
->>>>>>> 0ac200435d0fac2bf7a60b1a1abe085727f4d7f5:QL_BANVEXE/src/MenuMain/ThongKeJP.java
+public DefaultTableModel dtm;
     /**
      * Creates new form ThongKe
      */

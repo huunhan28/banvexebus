@@ -5,7 +5,7 @@
  */
 package MenuMain;
 
-import NhanVien.Connect;
+import Controller.Connect;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;

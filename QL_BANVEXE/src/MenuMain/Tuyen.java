@@ -5,7 +5,7 @@
  */
 package MenuMain;
 
-import NhanVien.Connect;
+import Controller.Connect;
 import java.sql.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
