@@ -103,6 +103,9 @@ public class ChuyenManHinhController {
                 case "CaLamViec":
                    node = new CaLamViec(taiKhoan);
                     break;
+                case "QuanLy":
+                   node = new Khac(taiKhoan);
+                    break;
                 default:
                      node = new TrangChuJPanel();
                      

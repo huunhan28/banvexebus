@@ -504,7 +504,7 @@ public class VeXeJP extends javax.swing.JPanel {
                                 .addComponent(jButton1)
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton2)))
-                        .addGap(0, 64, Short.MAX_VALUE)))
+                        .addGap(0, 210, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
