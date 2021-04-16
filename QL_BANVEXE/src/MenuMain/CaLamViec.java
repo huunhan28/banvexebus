@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Huu Nhan
  */
 public class CaLamViec extends javax.swing.JPanel {
-    DefaultTableModel dtm;
+    DefaultTableModel dtm,dtm2;
     /**
      * Creates new form CaLamViec1
      */
@@ -54,8 +54,8 @@ void layChuyenXeChuaPhanCong(){
         }
     }
     void layCaLamViec(){
-        dtm= (DefaultTableModel) jTableCaLamViec.getModel();
-        dtm.setNumRows(0);
+        dtm2= (DefaultTableModel) jTableCaLamViec.getModel();
+        dtm2.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
         Vector vt;
         try {
@@ -69,10 +69,10 @@ void layChuyenXeChuaPhanCong(){
                 vt.add(rs.getString(4));
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
-                dtm.addRow(vt);
+                dtm2.addRow(vt);
                 
             }
-            jTableCaLamViec.setModel(dtm);
+            jTableCaLamViec.setModel(dtm2);
             ps.close();
             rs.close();
             ketNoi.close();
@@ -206,6 +206,20 @@ void layChuyenXeChuaPhanCong(){
         
         return trung;
     }
+    public int kTChuyenXeDaDuocPhanCong(String maChuyenXe){
+        int tonTai=0;
+        Connection ketNoi=Connect.layKetNoi();
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("select * from CaLamViec where MaChuyenXe='"+maChuyenXe+"'");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    tonTai=1;
+                }
+            }catch(SQLException e){
+                System.out.println("loi kt chuyen xe da duoc phan cong");
+            }
+        return tonTai;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,11 +269,12 @@ void layChuyenXeChuaPhanCong(){
         btnThem = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel6.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel6.setBackground(new java.awt.Color(54, 33, 89));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ CA LÀM VIỆC");
 
@@ -280,7 +295,7 @@ void layChuyenXeChuaPhanCong(){
                 .addContainerGap())
         );
 
-        jPanel8.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setText("Nhập thông tin:");
@@ -373,18 +388,19 @@ void layChuyenXeChuaPhanCong(){
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel5.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel5.setBackground(new java.awt.Color(54, 33, 89));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("THÔNG TIN TÀI KHOẢN");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -483,11 +499,12 @@ void layChuyenXeChuaPhanCong(){
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel7.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel7.setBackground(new java.awt.Color(54, 33, 89));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("THÔNG TIN CA LÀM VIỆC");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -497,7 +514,7 @@ void layChuyenXeChuaPhanCong(){
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,6 +535,13 @@ void layChuyenXeChuaPhanCong(){
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Biển số:");
+
+        jComboBoxCLVCX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Chọn chuyến xe-" }));
+        jComboBoxCLVCX.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCLVCXItemStateChanged(evt);
+            }
+        });
 
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThem.setForeground(new java.awt.Color(0, 204, 0));
@@ -547,17 +571,19 @@ void layChuyenXeChuaPhanCong(){
                             .addComponent(jLabel23))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnThem)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jTextFieldCLVMaCa)
                             .addComponent(jComboBoxCLVCX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxCLVNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxCLVBS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel9)
-                        .addGap(0, 39, Short.MAX_VALUE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(btnThem))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel9)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -581,11 +607,11 @@ void layChuyenXeChuaPhanCong(){
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jComboBoxCLVBS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
-                .addGap(40, 40, 40)
+                .addGap(45, 45, 45)
                 .addComponent(btnThem)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addGap(72, 72, 72))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -740,6 +766,25 @@ void layChuyenXeChuaPhanCong(){
         layCaLamViec();
         layChuyenXeChuaPhanCong();
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void jComboBoxCLVCXItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCLVCXItemStateChanged
+        // TODO add your handling code here:
+        String maChuyenXe=(String) jComboBoxCLVCX.getSelectedItem();
+        if(kTChuyenXeDaDuocPhanCong(maChuyenXe)==1){
+            Connection ketNoi=Connect.layKetNoi();
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("select BienSoXe from CaLamViec where MaChuyenXe='"+maChuyenXe+"'");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    jComboBoxCLVBS.setSelectedItem(rs.getString(1));
+                    jComboBoxCLVBS.enable(false);
+                }
+            }catch(SQLException e){
+                System.out.println("loi kt chuyen xe da duoc phan cong");
+            }
+            
+        }
+    }//GEN-LAST:event_jComboBoxCLVCXItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

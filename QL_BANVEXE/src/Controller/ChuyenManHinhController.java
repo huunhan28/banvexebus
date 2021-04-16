@@ -122,27 +122,27 @@ public class ChuyenManHinhController {
         @Override
         public void mousePressed(MouseEvent e) {
            kindSelected= kind;
-           jlbItem.setBackground(new Color(91,100,191));
-           jpnItem.setBackground(new Color(91,100,191));
+           jlbItem.setBackground(new Color(85,65,118));
+           jpnItem.setBackground(new Color(85,65,118));
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            jlbItem.setBackground(new Color(91,100,191));
-           jpnItem.setBackground(new Color(91,100,191));
+            jlbItem.setBackground(new Color(85,65,118));
+           jpnItem.setBackground(new Color(85,65,118));
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            jlbItem.setBackground(new Color(91,100,191));
-           jpnItem.setBackground(new Color(91,100,191));
+          jlbItem.setBackground(new Color(85,65,118));           
+          jpnItem.setBackground(new Color(85,65,118));
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
              if(!kindSelected.equalsIgnoreCase(kind)){
-               jlbItem.setBackground(new Color(102,153,255));
-                jpnItem.setBackground(new Color(102,153,255));
+                 jlbItem.setBackground(new Color(54,33,89));
+             jpnItem.setBackground(new Color(54,33,89));
            }
        
         }
@@ -152,12 +152,12 @@ public class ChuyenManHinhController {
     private void setChangeBackgourd(String kind){
         for(DanhMucBean item: listItem){
            if(item.getKind().equalsIgnoreCase(kind)){
-            item.getJpn().setBackground(new Color(96,100,191));
-            item.getJlb().setBackground(new Color(96,100,191));
+            item.getJpn().setBackground(new Color(85,65,118));
+            item.getJlb().setBackground(new Color(85,65,118));
         }
         else{
-                item.getJpn().setBackground(new Color(51,153,0));
-            item.getJlb().setBackground(new Color(51,153,0));
+                item.getJpn().setBackground(new Color(54,33,89));
+            item.getJlb().setBackground(new Color(54,33,89));
                 }
     }
     }
