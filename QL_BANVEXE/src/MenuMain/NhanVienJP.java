@@ -14,8 +14,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,7 +78,8 @@ public class NhanVienJP extends javax.swing.JPanel {
                 vt= new Vector();
                 vt.add(rs.getString(1));
                 vt.add(rs.getString(2));
-                vt.add(rs.getString(3));
+                vt.add(rs.getDate(3));
+                System.out.println(rs.getString(3));
                 vt.add(rs.getString(4));
                 vt.add(rs.getString(5));
                 dtm.addRow(vt);
@@ -730,7 +734,12 @@ public class NhanVienJP extends javax.swing.JPanel {
         
         txtMaNV.setText(model.getValueAt(selectedRow, 0).toString());
         txtTenNV.setText(model.getValueAt(selectedRow, 1).toString());
-        jDateChooserNSNV.setDateFormatString(model.getValueAt(selectedRow, 2).toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            jDateChooserNSNV.setDate(sdf.parse(model.getValueAt(selectedRow, 2).toString()));
+        } catch (ParseException ex) {
+            System.out.println("loi lay ngay tu bang nhan vien"+ex.getMessage());
+        }
         txtDiaChi.setText(model.getValueAt(selectedRow, 3).toString());
         jcbChucVu.setSelectedItem(model.getValueAt(selectedRow, 4).toString());
     }//GEN-LAST:event_Table_NVMouseClicked

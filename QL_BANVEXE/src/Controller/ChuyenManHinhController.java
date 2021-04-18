@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import MenuMain.TrangChuJPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -38,15 +38,15 @@ public class ChuyenManHinhController {
     }
     
     
-    public void setView(JPanel jpnItem,JLabel jlbItem)
+    public void setView(JPanel jpnItem,JLabel jlbItem,String taiKhoan)
     {
-        kindSelected="TrangChu";
+        kindSelected="VeXe";
         jpnItem.setBackground(new Color(96,100,191));
         jlbItem.setBackground(new Color(96,100,191));
         
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new TrangChuJPanel());
+        root.add(new VeXeJP(taiKhoan));
         root.validate();
         root.repaint();
         
@@ -81,15 +81,15 @@ public class ChuyenManHinhController {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch(kind){
-                case "TrangChu":
-                   node = new TrangChuJPanel();
-                    break;
+//                case "TrangChu":
+//                   node = new TrangChuJPanel();
+//                    break;
                 case "NhanVien":
                    node = new NhanVienJP(taiKhoan);
                    
                     break;
                 case "ChuyenXe":
-                   node = new ChuyenXeJP(taiKhoan);
+                   node = new ChuyenXeJP2(taiKhoan);
                    break;
                 case "VeXe":
                    node = new VeXeJP(taiKhoan);
@@ -107,7 +107,7 @@ public class ChuyenManHinhController {
                    node = new Khac(taiKhoan);
                     break;
                 default:
-                     node = new TrangChuJPanel();
+                     node = new VeXeJP(taiKhoan);
                      
                     break;
             }

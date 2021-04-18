@@ -21,10 +21,10 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
         setTitle("Bán Vé Xe Bus");
         ChuyenManHinhController controler= new ChuyenManHinhController(jpnView);
-        controler.setView(jpnTrangChu, jlbTrangChu);
+        controler.setView(jpnVeXe, jlbVeXe,taiKhoan);
         
         List<DanhMucBean> listIteam= new ArrayList<>();
-        listIteam.add(new DanhMucBean("TrangChu", jpnTrangChu, jlbTrangChu));
+//        listIteam.add(new DanhMucBean("TrangChu", jpnTrangChu, jlbTrangChu));
         listIteam.add(new DanhMucBean("NhanVien", jpnNhanVien, jlbNhanVien));
         listIteam.add(new DanhMucBean("ChuyenXe", jpnChuyenXe, jlbChuyenXe));
         listIteam.add(new DanhMucBean("VeXe", jpnVeXe, jlbVeXe));
@@ -48,8 +48,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jpnRoot = new javax.swing.JPanel();
-        jpnTrangChu = new javax.swing.JPanel();
-        jlbTrangChu = new javax.swing.JLabel();
         jpnNhanVien = new javax.swing.JPanel();
         jlbNhanVien = new javax.swing.JLabel();
         jpnChuyenXe = new javax.swing.JPanel();
@@ -73,30 +71,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jpnRoot.setBackground(new java.awt.Color(54, 33, 89));
 
-        jpnTrangChu.setBackground(new java.awt.Color(85, 65, 118));
-
-        jlbTrangChu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlbTrangChu.setForeground(new java.awt.Color(255, 255, 255));
-        jlbTrangChu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Computer.png"))); // NOI18N
-        jlbTrangChu.setText("MÀN HÌNH CHÍNH");
-
-        javax.swing.GroupLayout jpnTrangChuLayout = new javax.swing.GroupLayout(jpnTrangChu);
-        jpnTrangChu.setLayout(jpnTrangChuLayout);
-        jpnTrangChuLayout.setHorizontalGroup(
-            jpnTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTrangChuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlbTrangChu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpnTrangChuLayout.setVerticalGroup(
-            jpnTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTrangChuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlbTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jpnNhanVien.setBackground(new java.awt.Color(54, 33, 89));
 
         jlbNhanVien.setBackground(new java.awt.Color(54, 33, 89));
@@ -105,20 +79,6 @@ public class MainMenu extends javax.swing.JFrame {
         jlbNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/add_user_male_40px.png"))); // NOI18N
         jlbNhanVien.setText("QUẢN LÝ NHÂN VIÊN");
-
-        javax.swing.GroupLayout jpnNhanVienLayout = new javax.swing.GroupLayout(jpnNhanVien);
-        jpnNhanVien.setLayout(jpnNhanVienLayout);
-        jpnNhanVienLayout.setHorizontalGroup(
-            jpnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnNhanVienLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jlbNhanVien)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpnNhanVienLayout.setVerticalGroup(
-            jpnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlbNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-        );
 
         jpnChuyenXe.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -141,6 +101,24 @@ public class MainMenu extends javax.swing.JFrame {
         jpnChuyenXeLayout.setVerticalGroup(
             jpnChuyenXeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlbChuyenXe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpnNhanVienLayout = new javax.swing.GroupLayout(jpnNhanVien);
+        jpnNhanVien.setLayout(jpnNhanVienLayout);
+        jpnNhanVienLayout.setHorizontalGroup(
+            jpnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnNhanVienLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jlbNhanVien)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jpnChuyenXe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpnNhanVienLayout.setVerticalGroup(
+            jpnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnNhanVienLayout.createSequentialGroup()
+                .addComponent(jlbNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpnChuyenXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jpnVeXe.setBackground(new java.awt.Color(54, 33, 89));
@@ -273,9 +251,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jpnTuyenXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnVeXe, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(jpnChuyenXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addContainerGap()
@@ -296,23 +272,19 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jLabelHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(jpnTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jpnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jpnChuyenXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(81, 81, 81)
                 .addComponent(jpnVeXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnTuyenXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnCaLamViec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jpnView.setBackground(new java.awt.Color(204, 204, 255));
@@ -325,7 +297,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -397,7 +369,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jlbNhanVien;
     private javax.swing.JLabel jlbQuanLy;
     private javax.swing.JLabel jlbThongKe;
-    private javax.swing.JLabel jlbTrangChu;
     private javax.swing.JLabel jlbTuyenXe;
     private javax.swing.JLabel jlbVeXe;
     private javax.swing.JPanel jpnCaLamViec;
@@ -406,7 +377,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jpnQuanLy;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnThongKe;
-    private javax.swing.JPanel jpnTrangChu;
     private javax.swing.JPanel jpnTuyenXe;
     private javax.swing.JPanel jpnVeXe;
     private javax.swing.JPanel jpnView;

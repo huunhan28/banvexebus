@@ -38,7 +38,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
      */
     public ChuyenXeJP(String taiKhoan) {
         initComponents();
-        layThongtinTKSuDung(taiKhoan);
+//        layThongtinTKSuDung(taiKhoan);
         loadMaCa();
 
     }
@@ -70,25 +70,25 @@ public class ChuyenXeJP extends javax.swing.JPanel {
 
     }
 
-    public void layThongtinTKSuDung(String taiKhoan) {
-
-        txtTenTK.setText(taiKhoan);
-        Connection ketNoi = Connect.layKetNoi();
-        try {
-            PreparedStatement ps = ketNoi.prepareStatement("select TenKhachHang,MatKhau,TaiKhoan.SDT\n"
-                    + "from KhachHang,TaiKhoan \n"
-                    + "where TaiKhoan.SDT=KhachHang.SDT and KhachHang.TaiKhoan='" + taiKhoan + "'");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println("toi day roi");
-                txtHoTen.setText(rs.getString(1));
-                txtSDT.setText(rs.getString(3));
-                //jPasswordFieldSua.setText(rs.getString(2));
-            }
-        } catch (SQLException e) {
-            System.out.println("loi lay thong tin de in ");
-        }
-    }
+//    public void layThongtinTKSuDung(String taiKhoan) {
+//
+//        txtTenTK.setText(taiKhoan);
+//        Connection ketNoi = Connect.layKetNoi();
+//        try {
+//            PreparedStatement ps = ketNoi.prepareStatement("select TenKhachHang,MatKhau,TaiKhoan.SDT\n"
+//                    + "from KhachHang,TaiKhoan \n"
+//                    + "where TaiKhoan.SDT=KhachHang.SDT and KhachHang.TaiKhoan='" + taiKhoan + "'");
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                System.out.println("toi day roi");
+//                txtHoTen.setText(rs.getString(1));
+//                txtSDT.setText(rs.getString(3));
+//                //jPasswordFieldSua.setText(rs.getString(2));
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("loi lay thong tin de in ");
+//        }
+//    }
 
     public void layThongTinChuyenXe(String maChuyenXe, String MaTuyen, String tongSoChoDat, String ngay) {
         String sql = "select MaChuyenXe,MaCa,BienSoXe,MaNV,MaTuyen,TenTuyen,Ngay,TongSoChoDat,GioKH,GioKT,ChiTiet from "
@@ -176,7 +176,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         if (rs.next()) {
             maCX = rs.getString("MaChuyenXe");
         }
-        JOptionPane.showMessageDialog(this, "Thêm thành công, Nhân viên mới có mã số là " + maCX);
+        JOptionPane.showMessageDialog(this, "Thêm thành công, Chuyen Xe mới có mã số là " + maCX);
         rs.close();
         ps.close();
     }
@@ -864,7 +864,6 @@ public class ChuyenXeJP extends javax.swing.JPanel {
                     tenMuc[3] = rs.getString("BienSoXe").trim();
                     tenMuc[4] = rs.getString("MaTuyen").trim();
                     tenMuc[5] = rs.getString("TenTuyen").trim();
-
                     tenMuc[6] = rs.getString("Ngay");
                     tenMuc[7] = rs.getString("TongSoChoDat");
                     tenMuc[8] = rs.getString("GioKH");

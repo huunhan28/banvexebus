@@ -7,6 +7,8 @@ package MenuMain;
 
 import Controller.Connect;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,8 +28,16 @@ public class ThongKeJP extends javax.swing.JPanel {
         layThongKeTheoNgayVSV();
         layThongKeTheoNgayVT();
     }
+//    public String chuyenNgay(Date ngay){
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(ngay);
+//        c.add(Calendar.DATE, 2);
+//        String strNgay = sdf.format(c.getTime());
+//        return strNgay;
+//    }
     void layThongKeTheoNgayTT(){
-        
+        String ngay;
         dtm= (DefaultTableModel) jTableTT.getModel();
         dtm.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -40,7 +50,11 @@ public class ThongKeJP extends javax.swing.JPanel {
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 vt= new Vector();
-                vt.add(rs.getString(1));
+//                ngay=chuyenNgay(rs.getDate(1));
+                
+                vt.add(rs.getDate(1));
+                
+                
                 vt.add(rs.getString(2));
                 
                 dtm.addRow(vt);
@@ -55,6 +69,7 @@ public class ThongKeJP extends javax.swing.JPanel {
         }
     }
     void layThongKeTheoNgayVSV(){
+        String ngay;
         dtm2= (DefaultTableModel) jTableVSV.getModel();
         dtm2.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -62,12 +77,16 @@ public class ThongKeJP extends javax.swing.JPanel {
         try {
             PreparedStatement ps=ketNoi.prepareStatement("select ngay,sum(SoChoDat)\n"+
                                                         "from Ve,ChuyenXe,LoaiVe\n"+
-                                                        "where ve.MaChuyenXe=ChuyenXe.MaChuyenXe and Ve.MaLoaiVe=LoaiVe.MaLoaiVe and Ve.MaLoaiVe='VT'\n"+
+                                                        "where ve.MaChuyenXe=ChuyenXe.MaChuyenXe and Ve.MaLoaiVe=LoaiVe.MaLoaiVe and Ve.MaLoaiVe='VSV'\n"+
                                                         "group by Ngay");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 vt= new Vector();
-                vt.add(rs.getString(1));
+//                ngay=chuyenNgay(rs.getDate(1));
+                
+                vt.add(rs.getDate(1));
+                
+                
                 vt.add(rs.getString(2));
                 
                 dtm2.addRow(vt);
@@ -82,6 +101,7 @@ public class ThongKeJP extends javax.swing.JPanel {
         }
     }
     void layThongKeTheoNgayVT(){
+        String ngay;
         dtm3= (DefaultTableModel) jTableVT.getModel();
         dtm3.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -89,12 +109,14 @@ public class ThongKeJP extends javax.swing.JPanel {
         try {
             PreparedStatement ps=ketNoi.prepareStatement("select ngay,sum(SoChoDat)\n" +
                                                             "from Ve,ChuyenXe,LoaiVe\n" +
-                                                            "where ve.MaChuyenXe=ChuyenXe.MaChuyenXe and Ve.MaLoaiVe=LoaiVe.MaLoaiVe and MaLoaiVe='VT'\n" +
+                                                            "where ve.MaChuyenXe=ChuyenXe.MaChuyenXe and Ve.MaLoaiVe=LoaiVe.MaLoaiVe and Ve.MaLoaiVe='VT'\n" +
                                                             "group by Ngay");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 vt= new Vector();
-                vt.add(rs.getString(1));
+//                ngay=chuyenNgay(rs.getDate(1));
+                
+                vt.add(rs.getDate(1));
                 vt.add(rs.getString(2));
                 
                 dtm3.addRow(vt);
@@ -105,7 +127,7 @@ public class ThongKeJP extends javax.swing.JPanel {
             rs.close();
             ketNoi.close();
         } catch (SQLException ex) {
-            System.out.println("loi lay Ve Thuong ");
+            System.out.println("loi lay Ve Thuong "+ex.getMessage());
         }
     }
     /**
@@ -319,7 +341,7 @@ public class ThongKeJP extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -335,7 +357,7 @@ public class ThongKeJP extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Thống kê theo tháng", jPanel3);
@@ -348,7 +370,7 @@ public class ThongKeJP extends javax.swing.JPanel {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Thống kê theo năm", jPanel11);
