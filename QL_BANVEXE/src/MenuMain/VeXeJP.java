@@ -44,8 +44,9 @@ public class VeXeJP extends javax.swing.JPanel {
         dtm.setNumRows(0);
         Connection ketNoi = Connect.layKetNoi();
         Vector vt;
+        java.util.Date date=new java.util.Date();  
         try {
-            PreparedStatement ps = ketNoi.prepareStatement("select * from Ve ");
+            PreparedStatement ps = ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 vt = new Vector();
@@ -56,6 +57,12 @@ public class VeXeJP extends javax.swing.JPanel {
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
                 vt.add(rs.getString(7));
+                
+                if(rs.getDate(11).after(date)){
+                    vt.add("Chua su dung");
+                }else{
+                    vt.add("Da su dung");
+                }
 
                 dtm.addRow(vt);
 
@@ -175,6 +182,7 @@ public class VeXeJP extends javax.swing.JPanel {
         }
 
     }
+    
 
     void layTuyen() {
         Connection ketNoi = Connect.layKetNoi();
@@ -293,12 +301,12 @@ public class VeXeJP extends javax.swing.JPanel {
         jTextField12 = new javax.swing.JTextField();
         btnThoat = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jTextField14 = new javax.swing.JTextField();
+        jTextFieldTKVe = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBoxTKVe = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -691,12 +699,18 @@ public class VeXeJP extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextFieldTKVe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldTKVeKeyReleased(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Vé", "Mã C.Xe", "Số Chỗ Đặt", "Mã loại vé", " Nơi Đi", "Nơi Đến ", "Tài Khoản"
+                "Mã Vé", "Mã C.Xe", "Số Chỗ Đặt", "Mã loại vé", " Nơi Đi", "Nơi Đến ", "Tài Khoản", "Đã sử dụng"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -713,7 +727,7 @@ public class VeXeJP extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("DANH SÁCH VÉ XE");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTKVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MaVe", "MaChuyenXe", "SoChoDat", "MaLoaiVe", "NoiDi", "NoiDen", "TaiKhoan" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -726,9 +740,9 @@ public class VeXeJP extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(522, Short.MAX_VALUE)
@@ -741,8 +755,8 @@ public class VeXeJP extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -1303,6 +1317,44 @@ public class VeXeJP extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jTextFieldTKVeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTKVeKeyReleased
+        // TODO add your handling code here:
+        String theLoai=(String) jComboBoxTKVe.getSelectedItem();
+        dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setNumRows(0);
+        Connection ketNoi = Connect.layKetNoi();
+        Vector vt;
+        java.util.Date date=new java.util.Date();  
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe and Ve."+theLoai+" LIKE '%"+jTextFieldTKVe.getText()+"%'");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                vt = new Vector();
+                vt.add(rs.getString(1));
+                vt.add(rs.getString(2));
+                vt.add(rs.getString(3));
+                vt.add(rs.getString(4));
+                vt.add(rs.getString(5));
+                vt.add(rs.getString(6));
+                vt.add(rs.getString(7));
+                if(rs.getDate(11).after(date)){
+                    vt.add("Chua su dung");
+                }else{
+                    vt.add("Da su dung");
+                }
+
+                dtm.addRow(vt);
+
+            }
+            jTable1.setModel(dtm);
+            ps.close();
+            rs.close();
+            ketNoi.close();
+        } catch (SQLException ex) {
+            System.out.println("loi lay ve admin");
+        }
+    }//GEN-LAST:event_jTextFieldTKVeKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChinhSua;
@@ -1313,11 +1365,11 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JButton jButtonHuy;
     private javax.swing.JButton jButtonThayDoi;
     private javax.swing.JButton jButtonThem;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBoxGioKhoiHanh;
     private javax.swing.JComboBox<String> jComboBoxLoaiVe;
     private javax.swing.JComboBox<String> jComboBoxNoiDen;
     private javax.swing.JComboBox<String> jComboBoxNoiDi;
+    private javax.swing.JComboBox<String> jComboBoxTKVe;
     private javax.swing.JComboBox<String> jComboBoxTuyen;
     private com.toedter.calendar.JDateChooser jDateChooserNgayKH;
     private javax.swing.JDialog jDialog1;
@@ -1371,7 +1423,6 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextFieldGioCu;
     private javax.swing.JTextField jTextFieldGioMoi;
     private javax.swing.JTextField jTextFieldLoaiVeCu;
@@ -1384,6 +1435,7 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldNoiDiMoi;
     private javax.swing.JTextField jTextFieldSoChoDatCu;
     private javax.swing.JTextField jTextFieldSoChoDatMoi;
+    private javax.swing.JTextField jTextFieldTKVe;
     private javax.swing.JTextField jTextFieldTranThaiCu;
     private javax.swing.JTextField jTextFieldTrangThaiMoi;
     private javax.swing.JTextField jTextFieldTuyenCu;

@@ -11,8 +11,16 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Controller.Connect;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 /**
  *
@@ -26,7 +34,6 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
     }
     public int ktUser(String email,String pass){
         int ok=0;
@@ -116,6 +123,43 @@ public class Login extends javax.swing.JDialog {
         
         
     }
+    public void dangNhap(){
+        //=========================================================
+        if(txtTenDN.getText().trim().equals("")){
+            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
+            txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
+            txtTenDN.setForeground(Color.red);
+            txtTenDN.setText("!");
+        }
+        if(jPassword.getText().trim().equals("")){
+            jPassword.setBorder(BorderFactory.createLineBorder(Color.red));
+            jPassword.setHorizontalAlignment(jPassword.RIGHT);
+            jPassword.setForeground(Color.red);
+            jPassword.setText("!");
+        }
+        String taiKhoan=txtTenDN.getText().trim();
+        String matKhau=jPassword.getText().trim();
+        if(taiKhoan!=null&&matKhau!=null&&taiKhoan!="!"&&matKhau!="!"){
+            if(ktUser(taiKhoan,matKhau)==1){
+                //da dang nhap duoc
+                System.out.println("dang nhap duoc");
+                this.dispose();
+                new MuaaVe(taiKhoan).setVisible(true);
+//                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
+//                this.dispose();
+            }
+            else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
+                //dang nhap tu cach admin
+                this.dispose();
+                new MainMenu(taiKhoan).setVisible(true);
+//                new quanli().setVisible(true);
+//                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
+                System.out.println("sai thong tin dang nhap");
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,6 +199,8 @@ public class Login extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        show_hide_pass = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
 
         jLabel8.setText("Tài khoản");
 
@@ -269,9 +315,15 @@ public class Login extends javax.swing.JDialog {
         jLabel3.setForeground(new java.awt.Color(54, 33, 89));
         jLabel3.setText("Mật Khẩu: ");
 
+        txtTenDN.setBorder(null);
         txtTenDN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTenDNMouseClicked(evt);
+            }
+        });
+        txtTenDN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTenDNKeyReleased(evt);
             }
         });
 
@@ -309,9 +361,15 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        jPassword.setBorder(null);
         jPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordMouseClicked(evt);
+            }
+        });
+        jPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordKeyReleased(evt);
             }
         });
 
@@ -350,6 +408,13 @@ public class Login extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        show_hide_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/hide.png"))); // NOI18N
+        show_hide_pass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                show_hide_passMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -357,30 +422,31 @@ public class Login extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtTenDN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                .addComponent(jPassword, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnLogin)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnLogin)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPassword)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(jSeparator3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(show_hide_pass))
+                            .addComponent(txtTenDN, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlbName)
-                                    .addComponent(jLabel3))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jLabel3))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(20, 20, 20))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -391,15 +457,20 @@ public class Login extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jlbName)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(4, 4, 4)
-                        .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(show_hide_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLogin)
                             .addComponent(btnThoat))
@@ -435,41 +506,7 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        //=========================================================
-        if(txtTenDN.getText().trim().equals("")){
-            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
-            txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
-            txtTenDN.setForeground(Color.red);
-            txtTenDN.setText("!");
-        }
-        if(jPassword.getText().trim().equals("")){
-            jPassword.setBorder(BorderFactory.createLineBorder(Color.red));
-            jPassword.setHorizontalAlignment(jPassword.RIGHT);
-            jPassword.setForeground(Color.red);
-            jPassword.setText("!");
-        }
-        String taiKhoan=txtTenDN.getText().trim();
-        String matKhau=jPassword.getText().trim();
-        if(taiKhoan!=null&&matKhau!=null&&taiKhoan!="!"&&matKhau!="!"){
-            if(ktUser(taiKhoan,matKhau)==1){
-                //da dang nhap duoc
-                System.out.println("dang nhap duoc");
-                this.dispose();
-                new MuaaVe(taiKhoan).setVisible(true);
-//                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
-//                this.dispose();
-            }
-            else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
-                //dang nhap tu cach admin
-                this.dispose();
-                new MainMenu(taiKhoan).setVisible(true);
-//                new quanli().setVisible(true);
-//                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
-                System.out.println("sai thong tin dang nhap");
-            }
-        }
+        dangNhap();
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -545,42 +582,37 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
         // TODO add your handling code here:
-        //=========================================================
-        if(txtTenDN.getText().trim().equals("")){
-            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
-            txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
-            txtTenDN.setForeground(Color.red);
-            txtTenDN.setText("!");
-        }
-        if(jPassword.getText().trim().equals("")){
-            jPassword.setBorder(BorderFactory.createLineBorder(Color.red));
-            jPassword.setHorizontalAlignment(jPassword.RIGHT);
-            jPassword.setForeground(Color.red);
-            jPassword.setText("!");
-        }
-        String taiKhoan=txtTenDN.getText().trim();
-        String matKhau=jPassword.getText().trim();
-        if(taiKhoan!=null&&matKhau!=null&&taiKhoan!="!"&&matKhau!="!"){
-            if(ktUser(taiKhoan,matKhau)==1){
-                //da dang nhap duoc
-                System.out.println("dang nhap duoc");
-                this.dispose();
-                new MuaaVe(taiKhoan).setVisible(true);
-//                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
-//                this.dispose();
-            }
-            else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
-                //dang nhap tu cach admin
-                this.dispose();
-                new MainMenu(taiKhoan).setVisible(true);
-//                new quanli().setVisible(true);
-//                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
-                System.out.println("sai thong tin dang nhap");
-            }
-        }
+        dangNhap();
     }//GEN-LAST:event_btnLoginKeyPressed
+
+    private void jPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+            dangNhap();
+        }
+    }//GEN-LAST:event_jPasswordKeyReleased
+
+    private void txtTenDNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDNKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { 
+            dangNhap();
+        }
+    }//GEN-LAST:event_txtTenDNKeyReleased
+    private  boolean flag = true;
+    private void show_hide_passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show_hide_passMouseClicked
+        // TODO add your handling code here:
+        if (flag) {
+            ImageIcon A = new ImageIcon(getClass().getResource("show.png"));
+            show_hide_pass.setIcon(A);
+            jPassword.setEchoChar((char) 0);
+            flag = false;
+        } else {
+            ImageIcon A = new ImageIcon(getClass().getResource("hide.png"));
+            show_hide_pass.setIcon(A);
+            jPassword.setEchoChar((char) 8226);
+            flag = true;
+        }
+    }//GEN-LAST:event_show_hide_passMouseClicked
 
     /**
      * @param args the command line arguments
@@ -647,6 +679,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextFieldDKDC;
     private javax.swing.JTextField jTextFieldDKMK;
     private javax.swing.JTextField jTextFieldDKNS;
@@ -654,6 +687,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDKTK;
     private javax.swing.JTextField jTextFieldDKTen;
     private javax.swing.JLabel jlbName;
+    private javax.swing.JLabel show_hide_pass;
     private javax.swing.JTextField txtTenDN;
     // End of variables declaration//GEN-END:variables
 }

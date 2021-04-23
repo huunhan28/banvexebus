@@ -705,9 +705,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField14" min="-2" pref="342" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTKVe" min="-2" pref="342" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jComboBox6" min="-2" pref="171" max="-2" attributes="0"/>
+                              <Component id="jComboBoxTKVe" min="-2" pref="171" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -725,8 +725,8 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTKVe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxTKVe" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="293" max="32767" attributes="0"/>
@@ -738,7 +738,10 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField14">
+            <Component class="javax.swing.JTextField" name="jTextFieldTKVe">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldTKVeKeyReleased"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -750,7 +753,7 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="0">
+                      <Table columnCount="8" rowCount="0">
                         <Column editable="true" title="M&#xe3; V&#xe9;" type="java.lang.Object"/>
                         <Column editable="true" title="M&#xe3; C.Xe" type="java.lang.Object"/>
                         <Column editable="true" title="S&#x1ed1; Ch&#x1ed7; &#x110;&#x1eb7;t" type="java.lang.Object"/>
@@ -758,10 +761,16 @@
                         <Column editable="true" title=" N&#x1a1;i &#x110;i" type="java.lang.Object"/>
                         <Column editable="true" title="N&#x1a1;i &#x110;&#x1ebf;n " type="java.lang.Object"/>
                         <Column editable="true" title="T&#xe0;i Kho&#x1ea3;n" type="java.lang.Object"/>
+                        <Column editable="true" title="&#x110;&#xe3; s&#x1eed; d&#x1ee5;ng" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -828,14 +837,17 @@
                 <Property name="text" type="java.lang.String" value="DANH S&#xc1;CH V&#xc9; XE"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox6">
+            <Component class="javax.swing.JComboBox" name="jComboBoxTKVe">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="7">
+                    <StringItem index="0" value="MaVe"/>
+                    <StringItem index="1" value="MaChuyenXe"/>
+                    <StringItem index="2" value="SoChoDat"/>
+                    <StringItem index="3" value="MaLoaiVe"/>
+                    <StringItem index="4" value="NoiDi"/>
+                    <StringItem index="5" value="NoiDen"/>
+                    <StringItem index="6" value="TaiKhoan"/>
                   </StringArray>
                 </Property>
               </Properties>
