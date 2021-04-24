@@ -8,6 +8,7 @@ package MenuMain;
 import Controller.Connect;
 import NhanVien.NhanVienQL;
 import NhanVien.NhanVienDAO;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -35,6 +36,9 @@ public class VeXeJP extends javax.swing.JPanel {
         layTuyen();
         layLoaiVe();
         layVe();
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserNgayKH.getDateEditor();
+        editor.setEditable(false);
 
     }
     public DefaultTableModel dtm;

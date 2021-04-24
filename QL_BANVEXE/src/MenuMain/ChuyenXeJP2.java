@@ -8,6 +8,7 @@ import Controller.Connect;
 import NhanVien.NhanVienQL;
 import NhanVien.NhanVienDAO;
 import ChuyenXe.*;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,6 +46,9 @@ public class ChuyenXeJP2 extends javax.swing.JPanel {
         layThongTinChuyenXe();
         //        layThongtinTKSuDung(taiKhoan);
         layTuyen();
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtDate.getDateEditor();
+        editor.setEditable(false);
     }
     void layTuyen(){
         Connection ketNoi=Connect.layKetNoi();

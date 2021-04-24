@@ -32,6 +32,8 @@ DefaultTableModel dtm;
         resetColor(jPanelListLoaiVe);
         resetColor(jPanelListChucVu);
         setColor(jPanelListTram);
+        
+        
     }
     //================================TRAM===========================
     void layTram(){
@@ -449,6 +451,7 @@ DefaultTableModel dtm;
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
+        jLayeredPaneKhac.setMaximumSize(new java.awt.Dimension(1091, 730));
         jLayeredPaneKhac.setLayout(new java.awt.CardLayout());
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -782,6 +785,10 @@ DefaultTableModel dtm;
         );
 
         jLayeredPaneKhac.add(jPanelTram, "card2");
+
+        jPanelXe.setMaximumSize(new java.awt.Dimension(1091, 730));
+        jPanelXe.setMinimumSize(new java.awt.Dimension(1091, 730));
+        jPanelXe.setPreferredSize(new java.awt.Dimension(1091, 730));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1796,7 +1803,7 @@ DefaultTableModel dtm;
                 .addGap(0, 0, 0)
                 .addComponent(jPanelListChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLayeredPaneKhac)
+            .addComponent(jLayeredPaneKhac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1808,7 +1815,7 @@ DefaultTableModel dtm;
                     .addComponent(jPanelListChucVu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelListTram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPaneKhac))
+                .addComponent(jLayeredPaneKhac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

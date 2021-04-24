@@ -7,6 +7,7 @@ package KhachHang;
 
 import Login.Login;
 import Controller.Connect;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import static java.lang.Math.*;
 import java.sql.*;
@@ -50,6 +51,10 @@ public class MuaaVe extends javax.swing.JFrame {
         jTableKetQuaTimDuong.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableKetQuaTimDuong.getColumnModel().getColumn(0).setPreferredWidth(100);
         jTableKetQuaTimDuong.getColumnModel().getColumn(1).setPreferredWidth(350);
+        jTableKetQuaTimDuong.getColumnModel().getColumn(2).setPreferredWidth(100);
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserMVNgay.getDateEditor();
+        editor.setEditable(false);
     }
     public void clock() {
         Thread clock = new Thread() {
@@ -294,6 +299,30 @@ public class MuaaVe extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("loi lay ve");
         }
+    }
+    //------------lay thoi gian tu tram den tram trong tuyen------
+    int thoiGianTuTramToiTramTrongTuyen(String tuyen,String tram1,String tram2){
+        int tramDi=0,tramDen=0;
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select ThoiGianTuyenDenTram from TuyenTram where Tuyen='"+tuyen+"' and Tram='"+tram1+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                tramDi=rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay ThoiGianTuyenDenTram");
+        }
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select ThoiGianTuyenDenTram from TuyenTram where Tuyen='"+tuyen+"' and Tram='"+tram2+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                tramDen=rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay ThoiGianTuyenDenTram");
+        }
+        return abs(tramDen-tramDi);
     }
     //Lay thong bao mua ve 1
     void thongBaoMuaVe1(){
@@ -1112,7 +1141,7 @@ public class MuaaVe extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Di chuyển bằng", "Chi tiết"
+                "Di chuyển bằng", "Chi tiết", "Thời gian"
             }
         ));
         jScrollPane4.setViewportView(jTableKetQuaTimDuong);
@@ -1154,8 +1183,8 @@ public class MuaaVe extends javax.swing.JFrame {
                     .addGroup(jPanelTimDuongLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jComboBoxSoChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTimDuongLayout.setVerticalGroup(
@@ -1581,7 +1610,9 @@ public class MuaaVe extends javax.swing.JFrame {
         for(int g=0;g<k;g++){
             if(layKhoangCachTuTramToiTramTrongTuyen(tuyenChung[g], noiDi, noiDen)<min){
                 jComboBoxMVTuyen.setSelectedItem(tuyenChung[g]);
+                min=layKhoangCachTuTramToiTramTrongTuyen(tuyenChung[g], noiDi, noiDen);
             }
+            
         }
         
         //----------thong bao khoang cach
@@ -1758,7 +1789,8 @@ public class MuaaVe extends javax.swing.JFrame {
             vt3= new Vector();
             for (int l = 0; l < k; l++) {
                 vt3.add(tuyenChung[l]);
-                //vt3.add("");
+                vt3.add("Tu "+noiDi+" den "+noiDen);
+                vt3.add(thoiGianTuTramToiTramTrongTuyen(tuyenChung[l], noiDi, noiDen));
                 dtm4.addRow(vt3);
                 System.out.println("tuyen chung "+tuyenChung[l]);
             }
@@ -1807,6 +1839,7 @@ public class MuaaVe extends javax.swing.JFrame {
             
             for (int l = 0; l < k; l++) {
                 vt.add(tuyenChung[l]);
+                vt.add(thoiGianTuTramToiTramTrongTuyen(tuyenChung[l], noiDi, noiDen));
                 dtm5.addRow(vt);
             }
             
@@ -1828,6 +1861,7 @@ public class MuaaVe extends javax.swing.JFrame {
 //                            }
                             vt1.add(tuyenNoiDi[l]+","+tuyenNoiDen[m]);
                             vt1.add("Tu "+noiDi+" den "+tramChung+",tu "+tramChung+" den "+noiDen);
+                            vt1.add(thoiGianTuTramToiTramTrongTuyen(tuyenNoiDi[l],noiDi,tramChung)+","+thoiGianTuTramToiTramTrongTuyen(tuyenNoiDen[m],tramChung,noiDen));
                             dtm5.addRow(vt1);
                             
 //                            System.out.println("Di bang tuyen "+tuyenNoiDi[l]+" va "+tuyenNoiDen[m]);
@@ -1894,35 +1928,40 @@ public class MuaaVe extends javax.swing.JFrame {
                 vt.add(tuyenChung[l]);
                 dtm5.addRow(vt);
             }
-            //if(k==0){
-            for (int l = 0; l < i; l++) {
-                for (int m = 0; m < j; m++) {
-                    if(timTramChung(tuyenNoiDi[l], tuyenNoiDen[m])==null){
+            if(k==0){
+                for (int l = 0; l < i; l++) {
+                    for (int m = 0; m < j; m++) {
+                        if(timTramChung(tuyenNoiDi[l], tuyenNoiDen[m])==null){
 
-                    }else{
-                        String tramChung=timTramChung(tuyenNoiDi[l], tuyenNoiDen[m]);
-                        Vector vt1;
-                        vt1= new Vector();
-                        vt1.add(tuyenNoiDi[l]+","+tuyenNoiDen[m]);
-                        vt1.add("Tu "+noiDi+" den "+tramChung+",tu "+tramChung+" den "+noiDen);
-                        dtm5.addRow(vt1);
+                        }else{
+                            String tramChung=timTramChung(tuyenNoiDi[l], tuyenNoiDen[m]);
+                            Vector vt1;
+                            vt1= new Vector();
+                            vt1.add(tuyenNoiDi[l]+","+tuyenNoiDen[m]);
+                            vt1.add("Tu "+noiDi+" den "+tramChung+",tu "+tramChung+" den "+noiDen);
+                            dtm5.addRow(vt1);
+                        }
                     }
                 }
             }
-            //}
-            for (int l = 0; l < i; l++) {
-                for (int m = 0; m < j; m++) {
-                    for (int n = 0; n < a; n++) {
-                        String tramChung1=timTramChung(tuyenNoiDi[l], tatCaTuyen[n]);
-                        String tramChung2=timTramChung(tuyenNoiDen[m], tatCaTuyen[n]);
-                        if(kiemTraChungTuyen(tatCaTuyen[n],tramChung1,tramChung2)==true){
-                            System.out.println(tuyenNoiDi[l]+" "+tatCaTuyen[n]+" "+tuyenNoiDen[m]);
-                            System.out.println(noiDi+" "+tramChung1+" "+tramChung2+" "+noiDen);
-                            Vector vt2;
-                            vt2= new Vector();
-                            vt2.add(tuyenNoiDi[l]+","+tatCaTuyen[n]+","+tuyenNoiDen[m]);
-                            vt2.add(noiDi+" den "+tramChung1+","+tramChung1+" den "+tramChung2+","+tramChung2+" den "+noiDen);
-                            dtm5.addRow(vt2);
+            if(dtm5.getRowCount()==0){
+                for (int l = 0; l < i; l++) {
+                    for (int m = 0; m < j; m++) {
+                        for (int n = 0; n < a; n++) {
+                            String tramChung1=timTramChung(tuyenNoiDi[l], tatCaTuyen[n]);
+                            String tramChung2=timTramChung(tuyenNoiDen[m], tatCaTuyen[n]);
+                            if(kiemTraChungTuyen(tatCaTuyen[n],tramChung1,tramChung2)==true){
+                                System.out.println(tuyenNoiDi[l]+" "+tatCaTuyen[n]+" "+tuyenNoiDen[m]);
+                                System.out.println(noiDi+" "+tramChung1+" "+tramChung2+" "+noiDen);
+                                Vector vt2;
+                                vt2= new Vector();
+                                vt2.add(tuyenNoiDi[l]+","+tatCaTuyen[n]+","+tuyenNoiDen[m]);
+                                vt2.add(noiDi+" den "+tramChung1+","+tramChung1+" den "+tramChung2+","+tramChung2+" den "+noiDen);
+                                vt2.add(thoiGianTuTramToiTramTrongTuyen(tuyenNoiDi[l], noiDi, tramChung1)+","+
+                                        thoiGianTuTramToiTramTrongTuyen(tatCaTuyen[n], tramChung1, tramChung2)+","+
+                                        thoiGianTuTramToiTramTrongTuyen(tuyenNoiDen[m], tramChung2, noiDen));
+                                dtm5.addRow(vt2);
+                            }
                         }
                     }
                 }
