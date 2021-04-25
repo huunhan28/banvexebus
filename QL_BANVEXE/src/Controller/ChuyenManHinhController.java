@@ -85,26 +85,26 @@ public class ChuyenManHinhController {
 //                   node = new TrangChuJPanel();
 //                    break;
                 case "NhanVien":
-                   node = new NhanVienJP(taiKhoan);
+                   node = new NhanVienJPanel(taiKhoan);
                    
                     break;
                 case "ChuyenXe":
-                   node = new ChuyenXeJP2(taiKhoan);
+                   node = new ChuyenXeJP(taiKhoan);
                    break;
                 case "VeXe":
                    node = new VeXeJP(taiKhoan);
                     break;
                 case "ThongKe":
-                   node = new ThongKeJP(taiKhoan);
+                   node = new ThongKeJPanel(taiKhoan);
                     break;
                 case "TuyenXe":
-                   node =new Tuyen(taiKhoan);
+                   node =new TuyenJPanel(taiKhoan);
                     break;
                 case "CaLamViec":
-                   node = new CaLamViec(taiKhoan);
+                   node = new CaLamViecJPanel(taiKhoan);
                     break;
                 case "QuanLy":
-                   node = new Khac(taiKhoan);
+                   node = new MucKhac(taiKhoan);
                     break;
                 default:
                      node = new VeXeJP(taiKhoan);

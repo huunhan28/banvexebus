@@ -487,7 +487,7 @@ public class MuaaVe extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
+        jlbDangXuat = new javax.swing.JLabel();
         jLabelTaiKhoan = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -640,13 +640,13 @@ public class MuaaVe extends javax.swing.JFrame {
         jLabelHome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelHome.setText("VEXEBUS");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Đăng xuất");
-        jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        jlbDangXuat.setText("Đăng xuất");
+        jlbDangXuat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlbDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                jlbDangXuatMouseClicked(evt);
             }
         });
 
@@ -662,7 +662,6 @@ public class MuaaVe extends javax.swing.JFrame {
 
         jLabelThoiGian.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelThoiGian.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelThoiGian.setText("jLabel1");
 
         jPanelList4.setBackground(new java.awt.Color(85, 65, 118));
         jPanelList4.setPreferredSize(new java.awt.Dimension(179, 54));
@@ -709,7 +708,7 @@ public class MuaaVe extends javax.swing.JFrame {
                 .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelListLayout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(jLabel11))
+                        .addComponent(jlbDangXuat))
                     .addGroup(jPanelListLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -741,7 +740,7 @@ public class MuaaVe extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabelThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel11)
+                .addComponent(jlbDangXuat)
                 .addGap(50, 50, 50))
         );
 
@@ -1415,20 +1414,7 @@ public class MuaaVe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxMVTuyenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMVTuyenItemStateChanged
-        // TODO add your handling code here:
-//        jComboBoxMVNoiDi.removeAllItems();
-//        jComboBoxMVNoiDen.removeAllItems();
-//        Connection ketNoi=Connect.layKetNoi();
-//        try{
-//            PreparedStatement ps= ketNoi.prepareStatement("select Tram from TuyenTram where Tuyen='"+jComboBoxMVTuyen.getSelectedItem()+"'");
-//            ResultSet rs=ps.executeQuery();
-//            while(rs.next()){
-//                jComboBoxMVNoiDi.addItem(rs.getString("Tram"));
-//                jComboBoxMVNoiDen.addItem(rs.getString("Tram"));
-//            }
-//        }catch(SQLException e){
-//            System.out.println("loi lay tram");
-//        }
+        
         thongBaoMuaVe1();
         thongBaoMuaVe2();
     }//GEN-LAST:event_jComboBoxMVTuyenItemStateChanged
@@ -1511,7 +1497,7 @@ public class MuaaVe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDoiMatKhauActionPerformed
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void jlbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseClicked
         // TODO add your handling code here:
         int ret= JOptionPane.showConfirmDialog(this, "Ban chac chan muon dang xuat?","Xac nhan",0);
                 
@@ -1525,7 +1511,7 @@ public class MuaaVe extends javax.swing.JFrame {
             dialog.setVisible(true);
         }
         
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_jlbDangXuatMouseClicked
 
     private void jComboBoxMVNoiDenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMVNoiDenItemStateChanged
         // TODO add your handling code here:
@@ -2001,7 +1987,6 @@ public class MuaaVe extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooserMVNgay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -2059,5 +2044,6 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldMVSoGhe;
     private javax.swing.JTextField jTextFieldPassSua;
     private javax.swing.JTextField jTextFieldTimVe;
+    private javax.swing.JLabel jlbDangXuat;
     // End of variables declaration//GEN-END:variables
 }
