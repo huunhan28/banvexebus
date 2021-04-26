@@ -8,6 +8,7 @@ package MenuMain;
 import Controller.Connect;
 import NhanVien.NhanVienQL;
 import NhanVien.NhanVienDAO;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,6 +49,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         layKhachHang(taiKhoan);
         loadChucVuComBoBox();
         layNhanVien();
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserNSNV.getDateEditor();
+        editor.setEditable(false);
     }
     
     private void initTable(){

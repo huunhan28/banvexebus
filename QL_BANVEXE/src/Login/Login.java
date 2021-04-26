@@ -11,6 +11,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Controller.Connect;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -34,6 +35,20 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserDKNS.getDateEditor();
+        editor.setEditable(false);
+    }
+    public String chuanHoaHoTen(String name){
+        name=name.toLowerCase();
+        name=name.replaceAll("\\s+", " ");
+        char namechar[]=name.toCharArray();
+        namechar[0]=(char) (namechar[0]-32);
+        for (int i = 0; i < name.length(); i++) {
+            if(namechar[i]==' '){
+                namechar[i+1]=(char)(namechar[i+1]-32);
+            }
+        }
+        return String.valueOf(namechar);
     }
     public int ktUser(String email,String pass){
         int ok=0;
@@ -172,7 +187,6 @@ public class Login extends javax.swing.JDialog {
         jDialog1 = new javax.swing.JDialog();
         jTextFieldDKTK = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextFieldDKNS = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldDKTen = new javax.swing.JTextField();
         jTextFieldDKDC = new javax.swing.JTextField();
@@ -255,7 +269,6 @@ public class Login extends javax.swing.JDialog {
                         .addGap(62, 62, 62)
                         .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldDKDC)
-                            .addComponent(jTextFieldDKNS)
                             .addComponent(jTextFieldDKMK)
                             .addComponent(jDateChooserDKNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jDialog1Layout.createSequentialGroup()
@@ -291,9 +304,7 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDKDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(30, 30, 30)
-                .addComponent(jTextFieldDKNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(78, 78, 78)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDangKy)
                     .addComponent(jButtonDangNhap))
@@ -527,21 +538,34 @@ public class Login extends javax.swing.JDialog {
         String ten=jTextFieldDKTen.getText().trim();
         String tk=jTextFieldDKTK.getText().trim();
         String matKhau=jTextFieldDKMK.getText().trim();
-        //if()
+        if(MuaaVe.isNumeric(sdt)==false||sdt.length()!=10){
+            JOptionPane.showMessageDialog(this, "So dien thoai phai co 10 chu so");
+            return;
+        }
+        char[] ktSDT=sdt.toCharArray();
+        if(ktSDT[0]!='0'){
+            JOptionPane.showMessageDialog(this, "So dien thoai khong dung dinh dang");
+            return;
+        }
         //================================
         java.sql.Date ngaysinh = null;
-        try {
-            String ngay = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooserDKNS.getDate());
-            java.util.Date tmp = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
-            ngaysinh = new java.sql.Date(tmp.getTime());
-        }
-        catch (Exception e) {
-            System.out.println("loi lay ngay sinh");
-            e.printStackTrace();
+        if(jDateChooserDKNS.getDateFormatString().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ngay sinh khong duoc trong");
+            return;
+        }else{
+            try {
+                String ngay = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooserDKNS.getDate());
+                java.util.Date tmp = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+                ngaysinh = new java.sql.Date(tmp.getTime());
+            }
+            catch (Exception e) {
+                System.out.println("loi lay ngay sinh");
+                e.printStackTrace();
+            }
         }
         //==================
-        System.out.println(ngaysinh);
-
+        ten=chuanHoaHoTen(ten);
+        
         String diachi=jTextFieldDKDC.getText().trim();
 
         if(kiemTraTaiKhoan(tk)==0&&kiemTraSDT(sdt)==0&&tk!=null&&ten!=null&&sdt!=null&&matKhau!=null&&ngaysinh!=null&&diachi!=null){
@@ -682,7 +706,6 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextFieldDKDC;
     private javax.swing.JTextField jTextFieldDKMK;
-    private javax.swing.JTextField jTextFieldDKNS;
     private javax.swing.JTextField jTextFieldDKSDT;
     private javax.swing.JTextField jTextFieldDKTK;
     private javax.swing.JTextField jTextFieldDKTen;
