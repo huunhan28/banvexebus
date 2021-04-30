@@ -49,6 +49,8 @@ public class ChuyenXeJP2 extends javax.swing.JPanel {
         
         JTextFieldDateEditor editor = (JTextFieldDateEditor) txtDate.getDateEditor();
         editor.setEditable(false);
+        java.util.Date date=new java.util.Date(); 
+        txtDate.setMinSelectableDate(date);
     }
     void layTuyen(){
         Connection ketNoi=Connect.layKetNoi();

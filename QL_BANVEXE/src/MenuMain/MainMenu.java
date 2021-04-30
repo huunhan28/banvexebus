@@ -67,7 +67,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jlbDangXuat = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -229,9 +229,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         jpnQuanLyLayout.setVerticalGroup(
             jpnQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnQuanLyLayout.createSequentialGroup()
-                .addComponent(jlbQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+            .addComponent(jlbQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
         );
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/bus_40px.png"))); // NOI18N
@@ -245,13 +243,13 @@ public class MainMenu extends javax.swing.JFrame {
         jSeparator1.setAlignmentX(2.0F);
         jSeparator1.setAlignmentY(2.0F);
 
-        jlbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jlbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
-        jlbDangXuat.setText("Đăng xuất");
-        jlbDangXuat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jlbDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Đăng xuất");
+        jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlbDangXuatMouseClicked(evt);
+                jLabel11MouseClicked(evt);
             }
         });
 
@@ -280,7 +278,7 @@ public class MainMenu extends javax.swing.JFrame {
                                 .addComponent(jLabelHome))))
                     .addGroup(jpnRootLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jlbDangXuat)))
+                        .addComponent(jLabel11)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
@@ -305,7 +303,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jpnQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jlbDangXuat)
+                .addComponent(jLabel11)
                 .addGap(51, 51, 51))
         );
 
@@ -347,7 +345,7 @@ public class MainMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseClicked
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         int ret= JOptionPane.showConfirmDialog(this, "Ban chac chan muon dang xuat?","Xac nhan",0);
 
@@ -361,7 +359,7 @@ public class MainMenu extends javax.swing.JFrame {
             dialog.setVisible(true);
         }
 
-    }//GEN-LAST:event_jlbDangXuatMouseClicked
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -400,12 +398,12 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabelHome;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jlbCaLamViec;
     private javax.swing.JLabel jlbChuyenXe;
-    private javax.swing.JLabel jlbDangXuat;
     private javax.swing.JLabel jlbNhanVien;
     private javax.swing.JLabel jlbQuanLy;
     private javax.swing.JLabel jlbThongKe;

@@ -6,13 +6,10 @@
 package MenuMain;
 
 import Controller.Connect;
-import Login.Login;
 import NhanVien.NhanVienQL;
 import NhanVien.NhanVienDAO;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.sql.Connection;
@@ -24,17 +21,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-
-import  XuatFile.*;
 
 public class VeXeJP extends javax.swing.JPanel {
 
@@ -47,20 +36,15 @@ public class VeXeJP extends javax.swing.JPanel {
         layTuyen();
         layLoaiVe();
         layVe();
-<<<<<<< HEAD
-         layKhachHang(taiKhoan);
-=======
         
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserNgayKH.getDateEditor();
         editor.setEditable(false);
 
->>>>>>> 320046280175536443ba5271791639e58511b6d7
     }
-    
     public DefaultTableModel dtm;
 
     void layVe() {
-        dtm = (DefaultTableModel) Table_Ve.getModel();
+        dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setNumRows(0);
         Connection ketNoi = Connect.layKetNoi();
         Vector vt;
@@ -87,7 +71,7 @@ public class VeXeJP extends javax.swing.JPanel {
                 dtm.addRow(vt);
 
             }
-            Table_Ve.setModel(dtm);
+            jTable1.setModel(dtm);
             ps.close();
             rs.close();
             ketNoi.close();
@@ -106,7 +90,7 @@ public class VeXeJP extends javax.swing.JPanel {
                     + "where TaiKhoan.SDT=KhachHang.SDT and KhachHang.TaiKhoan='" + taiKhoan + "'");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               
+                System.out.println("toi day roi");
                 txtHoTen.setText(rs.getString(1));
                 txtSDT.setText(rs.getString(3));
                 //jPasswordFieldSua.setText(rs.getString(2));
@@ -314,13 +298,17 @@ public class VeXeJP extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         txtTenTK = new javax.swing.JTextField();
         txtHoTen = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        btnThoat = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jTextFieldTKVe = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table_Ve = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jComboBoxTKVe = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
@@ -339,6 +327,8 @@ public class VeXeJP extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        jButtonThem = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtTaiKhoan = new javax.swing.JTextField();
@@ -347,7 +337,6 @@ public class VeXeJP extends javax.swing.JPanel {
         jComboBoxTuyen = new javax.swing.JComboBox<>();
         jComboBoxNoiDi = new javax.swing.JComboBox<>();
         jComboBoxNoiDen = new javax.swing.JComboBox<>();
-        jbtXuatFile = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -607,15 +596,14 @@ public class VeXeJP extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel5.setBackground(new java.awt.Color(54, 33, 89));
 
         jLabel2.setBackground(new java.awt.Color(0, 102, 153));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("THÔNG TIN TÀI KHOẢN SỬ DỤNG");
+        jLabel2.setText("THÔNG TIN TÀI KHOẢN");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -623,8 +611,8 @@ public class VeXeJP extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel2)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -643,36 +631,61 @@ public class VeXeJP extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Họ Tên:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Chức Vụ:");
+
+        btnThoat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnThoat.setForeground(new java.awt.Color(255, 0, 0));
+        btnThoat.setText("THOÁT");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(35, 35, 35)
-                        .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnThoat))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(35, 35, 35)
+                                .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(37, Short.MAX_VALUE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnThoat)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -681,7 +694,11 @@ public class VeXeJP extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -692,20 +709,24 @@ public class VeXeJP extends javax.swing.JPanel {
             }
         });
 
-        Table_Ve.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Vé", "Mã C.Xe", "Số Chỗ Đặt", "Mã loại vé", " Nơi Đi", "Nơi Đến ", "Tài Khoản", "Tình trạng"
+                "Mã Vé", "Mã C.Xe", "Số Chỗ Đặt", "Mã loại vé", " Nơi Đi", "Nơi Đến ", "Tài Khoản", "Đã sử dụng"
             }
         ));
-        Table_Ve.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Table_VeMouseClicked(evt);
+                jTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Table_Ve);
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 204, 0));
+        jButton6.setText("XUẤT FILE EXCEL");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("DANH SÁCH VÉ XE");
@@ -722,11 +743,15 @@ public class VeXeJP extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(522, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(398, 398, 398))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,7 +763,9 @@ public class VeXeJP extends javax.swing.JPanel {
                     .addComponent(jComboBoxTKVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                .addGap(48, 48, 48))
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addGap(5, 5, 5))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -803,6 +830,19 @@ public class VeXeJP extends javax.swing.JPanel {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setText("Tuyến :");
 
+        jButtonThem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonThem.setForeground(new java.awt.Color(0, 153, 0));
+        jButtonThem.setText("THÊM");
+        jButtonThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThemActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 204, 204));
+        jButton2.setText("HIỆN THỊ DANH SÁCH");
+
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Giờ KH:");
 
@@ -816,15 +856,6 @@ public class VeXeJP extends javax.swing.JPanel {
         jComboBoxTuyen.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxTuyenItemStateChanged(evt);
-            }
-        });
-
-        jbtXuatFile.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jbtXuatFile.setForeground(new java.awt.Color(0, 204, 0));
-        jbtXuatFile.setText("IN DANH SÁCH ");
-        jbtXuatFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtXuatFileActionPerformed(evt);
             }
         });
 
@@ -854,29 +885,23 @@ public class VeXeJP extends javax.swing.JPanel {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel13))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel11)
-                                            .addGap(32, 32, 32)
-                                            .addComponent(jComboBoxLoaiVe, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel10))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel14)
-                                                .addComponent(jLabel21))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtSoChoDat)
-                                                .addComponent(jDateChooserNgayKH, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel23)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(btnChinhSua)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnXoa)))
+                                        .addComponent(jLabel11)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(jComboBoxLoaiVe, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel21))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtSoChoDat)
+                                            .addComponent(jDateChooserNgayKH, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel23)))
                                 .addGap(19, 19, 19)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBoxGioKhoiHanh, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -884,8 +909,13 @@ public class VeXeJP extends javax.swing.JPanel {
                                     .addComponent(jComboBoxTuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBoxNoiDen, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(406, 406, 406)
-                                .addComponent(jbtXuatFile, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnChinhSua)
+                                .addGap(51, 51, 51)
+                                .addComponent(btnXoa)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButtonThem)
+                                .addGap(38, 38, 38)
+                                .addComponent(jButton2)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -921,11 +951,12 @@ public class VeXeJP extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel21)
                     .addComponent(jDateChooserNgayKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnChinhSua, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtXuatFile))
+                    .addComponent(jButtonThem)
+                    .addComponent(jButton2))
                 .addGap(112, 112, 112)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
@@ -966,10 +997,13 @@ public class VeXeJP extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1140,6 +1174,15 @@ public class VeXeJP extends javax.swing.JPanel {
         layVe();
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void jButtonThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThemActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonThemActionPerformed
+
     private void jButtonThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThayDoiActionPerformed
         // TODO add your handling code here:
         int maVe = Integer.parseInt(jLabelMaVe.getText().trim());
@@ -1229,10 +1272,10 @@ public class VeXeJP extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBoxTuyenItemStateChanged
 
-    private void Table_VeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_VeMouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) Table_Ve.getModel();
-        int selectedRow = Table_Ve.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedRow = jTable1.getSelectedRow();
 
         txtMaVe.setText(model.getValueAt(selectedRow, 0).toString());
         txtMaVe.enable(false);
@@ -1276,12 +1319,12 @@ public class VeXeJP extends javax.swing.JPanel {
         } catch (ParseException ex) {
             System.out.println("loi chuyen lay ngay tu table");
         }
-    }//GEN-LAST:event_Table_VeMouseClicked
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextFieldTKVeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTKVeKeyReleased
         // TODO add your handling code here:
         String theLoai=(String) jComboBoxTKVe.getSelectedItem();
-        dtm = (DefaultTableModel) Table_Ve.getModel();
+        dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setNumRows(0);
         Connection ketNoi = Connect.layKetNoi();
         Vector vt;
@@ -1307,7 +1350,7 @@ public class VeXeJP extends javax.swing.JPanel {
                 dtm.addRow(vt);
 
             }
-            Table_Ve.setModel(dtm);
+            jTable1.setModel(dtm);
             ps.close();
             rs.close();
             ketNoi.close();
@@ -1316,19 +1359,16 @@ public class VeXeJP extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldTKVeKeyReleased
 
-    private void jbtXuatFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtXuatFileActionPerformed
-          XuatFileVeXe ve =new XuatFileVeXe();
-          ve.setVisible(true);
-          
-    }//GEN-LAST:event_jbtXuatFileActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Table_Ve;
     private javax.swing.JButton btnChinhSua;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonHuy;
     private javax.swing.JButton jButtonThayDoi;
+    private javax.swing.JButton jButtonThem;
     private javax.swing.JComboBox<String> jComboBoxGioKhoiHanh;
     private javax.swing.JComboBox<String> jComboBoxLoaiVe;
     private javax.swing.JComboBox<String> jComboBoxNoiDen;
@@ -1370,6 +1410,7 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelMaChuyen;
@@ -1384,6 +1425,8 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextFieldGioCu;
     private javax.swing.JTextField jTextFieldGioMoi;
     private javax.swing.JTextField jTextFieldLoaiVeCu;
@@ -1401,7 +1444,6 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTrangThaiMoi;
     private javax.swing.JTextField jTextFieldTuyenCu;
     private javax.swing.JTextField jTextFieldTuyenMoi;
-    private javax.swing.JButton jbtXuatFile;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaVe;
     private javax.swing.JTextField txtSDT;
@@ -1409,8 +1451,4 @@ public class VeXeJP extends javax.swing.JPanel {
     private javax.swing.JTextField txtTaiKhoan;
     private javax.swing.JTextField txtTenTK;
     // End of variables declaration//GEN-END:variables
-
-    private void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
