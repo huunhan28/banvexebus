@@ -31,6 +31,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 import XuatFile.*;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 /**
  *
@@ -48,6 +49,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         layKhachHang(taiKhoan);
         loadChucVuComBoBox();
         layNhanVien();
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateNS.getDateEditor();
+        editor.setEditable(false);
     }
     
     private void initTable(){

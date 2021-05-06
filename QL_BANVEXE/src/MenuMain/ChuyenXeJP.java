@@ -34,6 +34,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 
 import  XuatFile.*;
+import com.toedter.calendar.JTextFieldDateEditor;
 /**
  *
  * @author Huu Nhan
@@ -49,7 +50,15 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         //        layThongtinTKSuDung(taiKhoan);
         layTuyen();
         layKhachHang(taiKhoan);
-
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtDate.getDateEditor();
+        editor.setEditable(false);
+        java.util.Date date=new java.util.Date(); 
+        txtDate.setMinSelectableDate(date);
+        
+        JTextFieldDateEditor editor2 = (JTextFieldDateEditor) jDate.getDateEditor();
+        editor2.setEditable(false);
+        jDate.setMinSelectableDate(date);
     }
 
     void layKhachHang(String taiKhoan) {

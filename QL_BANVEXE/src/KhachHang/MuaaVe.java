@@ -7,6 +7,7 @@ package KhachHang;
 
 import Login.Login;
 import Controller.Connect;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import static java.lang.Math.*;
 import java.sql.*;
@@ -50,6 +51,11 @@ public class MuaaVe extends javax.swing.JFrame {
         jTableKetQuaTimDuong.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTableKetQuaTimDuong.getColumnModel().getColumn(0).setPreferredWidth(100);
         jTableKetQuaTimDuong.getColumnModel().getColumn(1).setPreferredWidth(350);
+        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserMVNgay.getDateEditor();
+        editor.setEditable(false);
+        java.util.Date date=new java.util.Date(); 
+        jDateChooserMVNgay.setMinSelectableDate(date);
     }
     public void clock() {
         Thread clock = new Thread() {

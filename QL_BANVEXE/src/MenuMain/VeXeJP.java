@@ -34,6 +34,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 import  XuatFile.*;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 public class VeXeJP extends javax.swing.JPanel {
 
@@ -47,6 +48,9 @@ public class VeXeJP extends javax.swing.JPanel {
         layLoaiVe();
         layVe();
          layKhachHang(taiKhoan);
+         
+         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserNgayKH.getDateEditor();
+        editor.setEditable(false);
     }
     
     public DefaultTableModel dtm;
