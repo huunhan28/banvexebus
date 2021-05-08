@@ -15,6 +15,7 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
@@ -23,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+//import Login.SpeedSMSAPI;
 /**
  *
  * @author ADMIN
@@ -38,18 +40,21 @@ public class Login extends javax.swing.JDialog {
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserDKNS.getDateEditor();
         editor.setEditable(false);
     }
-    public String chuanHoaHoTen(String name){
-        name=name.toLowerCase();
-        name=name.replaceAll("\\s+", " ");
-        char namechar[]=name.toCharArray();
-        namechar[0]=(char) (namechar[0]-32);
-        for (int i = 0; i < name.length(); i++) {
-            if(namechar[i]==' '){
-                namechar[i+1]=(char)(namechar[i+1]-32);
+    public String layTaiKhoanVaMatKhauTuSDT(String sdt){
+        String TKvaMK="";
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select TaiKhoan,MatKhau from TaiKhoan where SDT='"+sdt+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                return "Tai Khoan: "+rs.getString(1)+"."+"Mat Khau: "+rs.getString(2);
             }
+        }catch(SQLException e){
+            System.out.println("loi lay tkmk tu sdt");
         }
-        return String.valueOf(namechar);
-    }
+        
+        return TKvaMK;
+    } 
     public int ktUser(String email,String pass){
         int ok=0;
         Connection ketNoi=Connect.layKetNoi();
@@ -141,13 +146,13 @@ public class Login extends javax.swing.JDialog {
     public void dangNhap(){
         //=========================================================
         if(txtTenDN.getText().trim().equals("")){
-            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
+            //txtTenDN.setBorder(BorderFactory.createLineBorder(Color.red));
             txtTenDN.setHorizontalAlignment(txtTenDN.RIGHT);
             txtTenDN.setForeground(Color.red);
             txtTenDN.setText("!");
         }
         if(jPassword.getText().trim().equals("")){
-            jPassword.setBorder(BorderFactory.createLineBorder(Color.red));
+            //jPassword.setBorder(BorderFactory.createLineBorder(Color.red));
             jPassword.setHorizontalAlignment(jPassword.RIGHT);
             jPassword.setForeground(Color.red);
             jPassword.setText("!");
@@ -187,6 +192,7 @@ public class Login extends javax.swing.JDialog {
         jDialog1 = new javax.swing.JDialog();
         jTextFieldDKTK = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jTextFieldDKNS = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldDKTen = new javax.swing.JTextField();
         jTextFieldDKDC = new javax.swing.JTextField();
@@ -199,6 +205,12 @@ public class Login extends javax.swing.JDialog {
         jButtonDangKy = new javax.swing.JButton();
         jDateChooserDKNS = new com.toedter.calendar.JDateChooser();
         jButtonDangNhap = new javax.swing.JButton();
+        jDialogQuenMatKhau = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldSDTLayMatKhau = new javax.swing.JTextField();
+        jButtonLayMatKhau = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jlbName = new javax.swing.JLabel();
@@ -215,6 +227,7 @@ public class Login extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         show_hide_pass = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabelQuenMatKhau = new javax.swing.JLabel();
 
         jLabel8.setText("Tài khoản");
 
@@ -249,32 +262,26 @@ public class Login extends javax.swing.JDialog {
             .addGroup(jDialog1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldDKSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldDKTen, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
+                .addGap(61, 61, 61)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldDKTK)
+                    .addComponent(jTextFieldDKTen)
+                    .addComponent(jTextFieldDKSDT)
+                    .addComponent(jTextFieldDKDC)
+                    .addComponent(jTextFieldDKNS)
+                    .addComponent(jTextFieldDKMK)
+                    .addComponent(jDateChooserDKNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jTextFieldDKTK, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(62, 62, 62)
-                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDKDC)
-                            .addComponent(jTextFieldDKMK)
-                            .addComponent(jDateChooserDKNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jDialog1Layout.createSequentialGroup()
-                                .addComponent(jButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonDangNhap)))))
+                        .addComponent(jButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(jButtonDangNhap)))
                 .addGap(82, 82, 82))
         );
         jDialog1Layout.setVerticalGroup(
@@ -304,11 +311,76 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDKDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(78, 78, 78)
+                .addGap(30, 30, 30)
+                .addComponent(jTextFieldDKNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDangKy)
                     .addComponent(jButtonDangNhap))
                 .addContainerGap(84, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel2.setText("Hệ thống sẽ gửi mật khẩu về số điện thoại cho bạn");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel11.setText("Nhập số điện thoại:");
+
+        jButtonLayMatKhau.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonLayMatKhau.setForeground(new java.awt.Color(54, 33, 89));
+        jButtonLayMatKhau.setText("Lấy mật khẩu");
+        jButtonLayMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLayMatKhauActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(54, 33, 89));
+        jButton1.setText("Thoát");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogQuenMatKhauLayout = new javax.swing.GroupLayout(jDialogQuenMatKhau.getContentPane());
+        jDialogQuenMatKhau.getContentPane().setLayout(jDialogQuenMatKhauLayout);
+        jDialogQuenMatKhauLayout.setHorizontalGroup(
+            jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogQuenMatKhauLayout.createSequentialGroup()
+                .addGroup(jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogQuenMatKhauLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDialogQuenMatKhauLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldSDTLayMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jDialogQuenMatKhauLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jButtonLayMatKhau)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jDialogQuenMatKhauLayout.setVerticalGroup(
+            jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogQuenMatKhauLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2)
+                .addGap(55, 55, 55)
+                .addGroup(jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextFieldSDTLayMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(jDialogQuenMatKhauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLayMatKhau)
+                    .addComponent(jButton1))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -426,6 +498,15 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        jLabelQuenMatKhau.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelQuenMatKhau.setForeground(new java.awt.Color(54, 33, 89));
+        jLabelQuenMatKhau.setText("Quên mật khẩu?");
+        jLabelQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelQuenMatKhauMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -446,17 +527,21 @@ public class Login extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPassword)
-                                    .addComponent(jSeparator1)
-                                    .addComponent(jSeparator3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(show_hide_pass))
-                            .addComponent(txtTenDN, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlbName)
-                                    .addComponent(jLabel3))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabelQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTenDN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 10, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(show_hide_pass)))))
                 .addGap(20, 20, 20))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -481,6 +566,8 @@ public class Login extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(show_hide_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabelQuenMatKhau)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLogin)
@@ -525,7 +612,7 @@ public class Login extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(txtTenDN.getText().equals("!")){
             txtTenDN.setText("");
-            txtTenDN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            //txtTenDN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             txtTenDN.setHorizontalAlignment(JTextField.LEFT);
             txtTenDN.setForeground(Color.black);
         
@@ -538,34 +625,21 @@ public class Login extends javax.swing.JDialog {
         String ten=jTextFieldDKTen.getText().trim();
         String tk=jTextFieldDKTK.getText().trim();
         String matKhau=jTextFieldDKMK.getText().trim();
-        if(MuaaVe.isNumeric(sdt)==false||sdt.length()!=10){
-            JOptionPane.showMessageDialog(this, "So dien thoai phai co 10 chu so");
-            return;
-        }
-        char[] ktSDT=sdt.toCharArray();
-        if(ktSDT[0]!='0'){
-            JOptionPane.showMessageDialog(this, "So dien thoai khong dung dinh dang");
-            return;
-        }
+        //if()
         //================================
         java.sql.Date ngaysinh = null;
-        if(jDateChooserDKNS.getDateFormatString().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ngay sinh khong duoc trong");
-            return;
-        }else{
-            try {
-                String ngay = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooserDKNS.getDate());
-                java.util.Date tmp = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
-                ngaysinh = new java.sql.Date(tmp.getTime());
-            }
-            catch (Exception e) {
-                System.out.println("loi lay ngay sinh");
-                e.printStackTrace();
-            }
+        try {
+            String ngay = new SimpleDateFormat("yyyy-MM-dd").format(jDateChooserDKNS.getDate());
+            java.util.Date tmp = new SimpleDateFormat("yyyy-MM-dd").parse(ngay);
+            ngaysinh = new java.sql.Date(tmp.getTime());
+        }
+        catch (Exception e) {
+            System.out.println("loi lay ngay sinh");
+            e.printStackTrace();
         }
         //==================
-        ten=chuanHoaHoTen(ten);
-        
+        System.out.println(ngaysinh);
+
         String diachi=jTextFieldDKDC.getText().trim();
 
         if(kiemTraTaiKhoan(tk)==0&&kiemTraSDT(sdt)==0&&tk!=null&&ten!=null&&sdt!=null&&matKhau!=null&&ngaysinh!=null&&diachi!=null){
@@ -598,7 +672,7 @@ public class Login extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(jPassword.getText().equals("!")){
             jPassword.setText("");
-            jPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            //jPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             jPassword.setHorizontalAlignment(jPassword.LEFT);
             jPassword.setForeground(Color.black);
         }
@@ -637,6 +711,45 @@ public class Login extends javax.swing.JDialog {
             flag = true;
         }
     }//GEN-LAST:event_show_hide_passMouseClicked
+
+    private void jLabelQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuenMatKhauMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        jDialogQuenMatKhau.setSize(400, 400);
+        jDialogQuenMatKhau.setLocation(400, 300);
+        jDialogQuenMatKhau.setVisible(true);
+    }//GEN-LAST:event_jLabelQuenMatKhauMouseClicked
+
+    private void jButtonLayMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLayMatKhauActionPerformed
+        // TODO add your handling code here:
+        String sdtLayMatKhau=jTextFieldSDTLayMatKhau.getText().trim();
+        if(sdtLayMatKhau.isEmpty()){
+            JOptionPane.showMessageDialog(this, "So dien thoai trong!");
+            return;
+        }
+        String TKMK=layTaiKhoanVaMatKhauTuSDT(sdtLayMatKhau);
+        if(TKMK.isEmpty()){
+            JOptionPane.showMessageDialog(this, "So dien thoai nay chua co tai khoan!");
+            return;
+        }
+        SpeedSMSAPI api  = new SpeedSMSAPI("El8lwPHKKWNnse25b2dTuQ1_aa_ko7Gq");
+        try {
+                String result = api.sendSMS(sdtLayMatKhau, TKMK, 5, "6db49df0e78b2f8d");
+                System.out.println(result);
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Tin nhan da duoc gui ve so dien thoai:"+sdtLayMatKhau);
+        
+    }//GEN-LAST:event_jButtonLayMatKhauActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jDialogQuenMatKhau.setVisible(false);
+        Login dialog = new Login(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -683,12 +796,17 @@ public class Login extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDangKy;
     private javax.swing.JButton jButtonDangNhap;
+    private javax.swing.JButton jButtonLayMatKhau;
     private com.toedter.calendar.JDateChooser jDateChooserDKNS;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialogQuenMatKhau;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -698,6 +816,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelDangKy;
     private javax.swing.JLabel jLabelHome;
+    private javax.swing.JLabel jLabelQuenMatKhau;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPassword;
@@ -706,9 +825,11 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextFieldDKDC;
     private javax.swing.JTextField jTextFieldDKMK;
+    private javax.swing.JTextField jTextFieldDKNS;
     private javax.swing.JTextField jTextFieldDKSDT;
     private javax.swing.JTextField jTextFieldDKTK;
     private javax.swing.JTextField jTextFieldDKTen;
+    private javax.swing.JTextField jTextFieldSDTLayMatKhau;
     private javax.swing.JLabel jlbName;
     private javax.swing.JLabel show_hide_pass;
     private javax.swing.JTextField txtTenDN;

@@ -67,7 +67,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
+        jlbDangXuat = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,6 +82,9 @@ public class MainMenu extends javax.swing.JFrame {
         jlbNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/add_user_male_40px.png"))); // NOI18N
         jlbNhanVien.setText("QUẢN LÝ NHÂN VIÊN");
+        jlbNhanVien.setMaximumSize(new java.awt.Dimension(196, 48));
+        jlbNhanVien.setMinimumSize(new java.awt.Dimension(196, 48));
+        jlbNhanVien.setPreferredSize(new java.awt.Dimension(196, 48));
 
         jpnChuyenXe.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -91,6 +94,9 @@ public class MainMenu extends javax.swing.JFrame {
         jlbChuyenXe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbChuyenXe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/waypoint_map_40px.png"))); // NOI18N
         jlbChuyenXe.setText("QUẢN LÝ CHUYẾN XE ");
+        jlbChuyenXe.setMaximumSize(new java.awt.Dimension(199, 48));
+        jlbChuyenXe.setMinimumSize(new java.awt.Dimension(199, 48));
+        jlbChuyenXe.setPreferredSize(new java.awt.Dimension(199, 48));
 
         javax.swing.GroupLayout jpnChuyenXeLayout = new javax.swing.GroupLayout(jpnChuyenXe);
         jpnChuyenXe.setLayout(jpnChuyenXeLayout);
@@ -112,7 +118,7 @@ public class MainMenu extends javax.swing.JFrame {
             jpnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnNhanVienLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jlbNhanVien)
+                .addComponent(jlbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jpnChuyenXe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -152,7 +158,7 @@ public class MainMenu extends javax.swing.JFrame {
         jlbThongKe.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlbThongKe.setForeground(new java.awt.Color(255, 255, 255));
         jlbThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/accounting_64px.png"))); // NOI18N
+        jlbThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/statistics_48px.png"))); // NOI18N
         jlbThongKe.setText("THỐNG KÊ");
 
         javax.swing.GroupLayout jpnThongKeLayout = new javax.swing.GroupLayout(jpnThongKe);
@@ -160,15 +166,12 @@ public class MainMenu extends javax.swing.JFrame {
         jpnThongKeLayout.setHorizontalGroup(
             jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnThongKeLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jlbThongKe)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpnThongKeLayout.setVerticalGroup(
             jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnThongKeLayout.createSequentialGroup()
-                .addComponent(jlbThongKe)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jlbThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
         jpnTuyenXe.setBackground(new java.awt.Color(54, 33, 89));
@@ -177,6 +180,7 @@ public class MainMenu extends javax.swing.JFrame {
         jlbTuyenXe.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlbTuyenXe.setForeground(new java.awt.Color(255, 255, 255));
         jlbTuyenXe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbTuyenXe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/journey_management_planning_48px.png"))); // NOI18N
         jlbTuyenXe.setText("QUẢN LÝ TUYẾN XE");
 
         javax.swing.GroupLayout jpnTuyenXeLayout = new javax.swing.GroupLayout(jpnTuyenXe);
@@ -197,6 +201,7 @@ public class MainMenu extends javax.swing.JFrame {
         jlbCaLamViec.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlbCaLamViec.setForeground(new java.awt.Color(255, 255, 255));
         jlbCaLamViec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbCaLamViec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/management_48px.png"))); // NOI18N
         jlbCaLamViec.setText("QUẢN LÝ CA LÀM VIỆC");
 
         javax.swing.GroupLayout jpnCaLamViecLayout = new javax.swing.GroupLayout(jpnCaLamViec);
@@ -217,6 +222,7 @@ public class MainMenu extends javax.swing.JFrame {
         jlbQuanLy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlbQuanLy.setForeground(new java.awt.Color(255, 255, 255));
         jlbQuanLy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbQuanLy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/maintenance_48px.png"))); // NOI18N
         jlbQuanLy.setText("QUẢN LÝ KHÁC");
 
         javax.swing.GroupLayout jpnQuanLyLayout = new javax.swing.GroupLayout(jpnQuanLy);
@@ -243,13 +249,13 @@ public class MainMenu extends javax.swing.JFrame {
         jSeparator1.setAlignmentX(2.0F);
         jSeparator1.setAlignmentY(2.0F);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Đăng xuất");
-        jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlbDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        jlbDangXuat.setText("Đăng xuất");
+        jlbDangXuat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jlbDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                jlbDangXuatMouseClicked(evt);
             }
         });
 
@@ -278,7 +284,7 @@ public class MainMenu extends javax.swing.JFrame {
                                 .addComponent(jLabelHome))))
                     .addGroup(jpnRootLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jLabel11)))
+                        .addComponent(jlbDangXuat)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
@@ -287,7 +293,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelHome, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
@@ -302,8 +308,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jpnCaLamViec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jpnQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(jlbDangXuat)
                 .addGap(51, 51, 51))
         );
 
@@ -345,7 +351,7 @@ public class MainMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void jlbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseClicked
         // TODO add your handling code here:
         int ret= JOptionPane.showConfirmDialog(this, "Ban chac chan muon dang xuat?","Xac nhan",0);
 
@@ -359,7 +365,7 @@ public class MainMenu extends javax.swing.JFrame {
             dialog.setVisible(true);
         }
 
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_jlbDangXuatMouseClicked
 
     /**
      * @param args the command line arguments
@@ -398,12 +404,12 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabelHome;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jlbCaLamViec;
     private javax.swing.JLabel jlbChuyenXe;
+    private javax.swing.JLabel jlbDangXuat;
     private javax.swing.JLabel jlbNhanVien;
     private javax.swing.JLabel jlbQuanLy;
     private javax.swing.JLabel jlbThongKe;
