@@ -192,7 +192,6 @@ public class Login extends javax.swing.JDialog {
         jDialog1 = new javax.swing.JDialog();
         jTextFieldDKTK = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextFieldDKNS = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldDKTen = new javax.swing.JTextField();
         jTextFieldDKDC = new javax.swing.JTextField();
@@ -205,6 +204,8 @@ public class Login extends javax.swing.JDialog {
         jButtonDangKy = new javax.swing.JButton();
         jDateChooserDKNS = new com.toedter.calendar.JDateChooser();
         jButtonDangNhap = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jDialogQuenMatKhau = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -255,6 +256,26 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(54, 33, 89));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ĐĂNG KÝ TÀI KHOẢN NGƯỜI DÙNG");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
@@ -275,7 +296,6 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(jTextFieldDKTen)
                     .addComponent(jTextFieldDKSDT)
                     .addComponent(jTextFieldDKDC)
-                    .addComponent(jTextFieldDKNS)
                     .addComponent(jTextFieldDKMK)
                     .addComponent(jDateChooserDKNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jDialog1Layout.createSequentialGroup()
@@ -283,11 +303,13 @@ public class Login extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jButtonDangNhap)))
                 .addGap(82, 82, 82))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDKTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -311,13 +333,11 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDKDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(30, 30, 30)
-                .addComponent(jTextFieldDKNS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(73, 73, 73)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDangKy)
                     .addComponent(jButtonDangNhap))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -625,7 +645,6 @@ public class Login extends javax.swing.JDialog {
         String ten=jTextFieldDKTen.getText().trim();
         String tk=jTextFieldDKTK.getText().trim();
         String matKhau=jTextFieldDKMK.getText().trim();
-        //if()
         //================================
         java.sql.Date ngaysinh = null;
         try {
@@ -803,6 +822,7 @@ public class Login extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jDateChooserDKNS;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialogQuenMatKhau;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
@@ -819,13 +839,13 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelQuenMatKhau;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextFieldDKDC;
     private javax.swing.JTextField jTextFieldDKMK;
-    private javax.swing.JTextField jTextFieldDKNS;
     private javax.swing.JTextField jTextFieldDKSDT;
     private javax.swing.JTextField jTextFieldDKTK;
     private javax.swing.JTextField jTextFieldDKTen;

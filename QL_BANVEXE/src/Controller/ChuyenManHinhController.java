@@ -106,6 +106,9 @@ public class ChuyenManHinhController {
                 case "QuanLy":
                    node = new MucKhac(taiKhoan);
                     break;
+                case "QuanLyUser":
+                   node = new QuanLyUser(taiKhoan);
+                    break;
                 default:
                      node = new VeXeJP(taiKhoan);
                      

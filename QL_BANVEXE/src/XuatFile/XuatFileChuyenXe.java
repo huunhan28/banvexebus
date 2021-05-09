@@ -7,6 +7,7 @@ package XuatFile;
 
 import Controller.Connect;
 import MenuMain.MainMenu;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -33,7 +34,8 @@ public class XuatFileChuyenXe extends javax.swing.JFrame {
      */
     public XuatFileChuyenXe() {
         initComponents();
-        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDate.getDateEditor();
+        editor.setEditable(false);
     }
     
     /**
@@ -54,10 +56,10 @@ public class XuatFileChuyenXe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(54, 33, 89));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("XUẤT FILE EXCEL");
 

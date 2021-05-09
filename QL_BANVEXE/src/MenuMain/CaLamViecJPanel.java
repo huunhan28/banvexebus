@@ -22,6 +22,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 import XuatFile.*;
+import java.text.ParseException;
 /**
  *
  * @author Huu Nhan
@@ -391,6 +392,11 @@ void layChuyenXeChuaPhanCong(){
                 "Chuyến xe chưa phân công"
             }
         ));
+        jTableChuyenXeChuaDuocPhanCong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableChuyenXeChuaDuocPhanCongMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableChuyenXeChuaDuocPhanCong);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -562,7 +568,7 @@ void layChuyenXeChuaPhanCong(){
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel9.setText("(Thời gian đến = thời gian khởi hành + ...h)");
+        jLabel9.setText("(Thời gian đến = thời gian khởi hành + 2h)");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 0, 255));
@@ -598,18 +604,18 @@ void layChuyenXeChuaPhanCong(){
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
+                .addComponent(btnThem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(56, 56, 56))
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnThem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(56, 56, 56))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(btnXuatFile)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnXuatFile))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel9)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -820,6 +826,14 @@ void layChuyenXeChuaPhanCong(){
        XuatFileCaLamViec caLV= new XuatFileCaLamViec();
        caLV.setVisible(true);
     }//GEN-LAST:event_btnXuatFileActionPerformed
+
+    private void jTableChuyenXeChuaDuocPhanCongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableChuyenXeChuaDuocPhanCongMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model= (DefaultTableModel)jTableChuyenXeChuaDuocPhanCong.getModel();
+        int selectedRow = jTableChuyenXeChuaDuocPhanCong.getSelectedRow();
+        
+        jComboBoxCLVCX.setSelectedItem(model.getValueAt(selectedRow, 0).toString());
+    }//GEN-LAST:event_jTableChuyenXeChuaDuocPhanCongMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1636,6 +1636,7 @@ public class MuaaVe extends javax.swing.JFrame {
         for(int g=0;g<k;g++){
             if(layKhoangCachTuTramToiTramTrongTuyen(tuyenChung[g], noiDi, noiDen)<min){
                 jComboBoxMVTuyen.setSelectedItem(tuyenChung[g]);
+                min=layKhoangCachTuTramToiTramTrongTuyen(tuyenChung[g], noiDi, noiDen);
             }
         }
         
@@ -2191,6 +2192,7 @@ public class MuaaVe extends javax.swing.JFrame {
                             vt1= new Vector();
                             vt1.add(tuyenNoiDi[l]+","+tuyenNoiDen[m]);
                             vt1.add("Tu "+noiDi+" den "+tramChung+",tu "+tramChung+" den "+noiDen);
+                            vt1.add(thoiGianTuTramToiTramTrongTuyen(tuyenNoiDi[l],noiDi,tramChung)+","+thoiGianTuTramToiTramTrongTuyen(tuyenNoiDen[m],tramChung,noiDen));
                             dtm5.addRow(vt1);
                         }
                     }

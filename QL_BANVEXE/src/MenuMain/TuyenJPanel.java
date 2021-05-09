@@ -781,7 +781,7 @@ void layTuyen(){
 
         if(kiemTraTramTonTai(tram[tram1.length-1])==0){
             jLabel1BaoLoiTramDiQua.setText("Tram "+tram[tram1.length-1]+" chua ton tai! Xin kiem tra lai.");
-            return;
+            //return;
         }
         
         

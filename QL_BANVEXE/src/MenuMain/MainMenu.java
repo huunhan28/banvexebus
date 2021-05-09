@@ -31,10 +31,10 @@ public class MainMenu extends javax.swing.JFrame {
         listIteam.add(new DanhMucBean("ChuyenXe", jpnChuyenXe, jlbChuyenXe));
         listIteam.add(new DanhMucBean("VeXe", jpnVeXe, jlbVeXe));
         listIteam.add(new DanhMucBean("ThongKe", jpnThongKe, jlbThongKe));
-         listIteam.add(new DanhMucBean("TuyenXe", jpnTuyenXe, jlbTuyenXe));
-          listIteam.add(new DanhMucBean("CaLamViec", jpnCaLamViec, jlbCaLamViec));
-          listIteam.add(new DanhMucBean("QuanLy", jpnQuanLy, jlbQuanLy));
-          
+        listIteam.add(new DanhMucBean("TuyenXe", jpnTuyenXe, jlbTuyenXe));
+        listIteam.add(new DanhMucBean("CaLamViec", jpnCaLamViec, jlbCaLamViec));
+        listIteam.add(new DanhMucBean("QuanLy", jpnQuanLy, jlbQuanLy));
+        listIteam.add(new DanhMucBean("QuanLyUser", jpnQuanLyUser, jlbQuanLyUser));  
     
         
         controler.setEvent(listIteam,taiKhoan);
@@ -68,6 +68,8 @@ public class MainMenu extends javax.swing.JFrame {
         jLabelHome = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jlbDangXuat = new javax.swing.JLabel();
+        jpnQuanLyUser = new javax.swing.JPanel();
+        jlbQuanLyUser = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -259,6 +261,28 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jpnQuanLyUser.setBackground(new java.awt.Color(54, 33, 89));
+
+        jlbQuanLyUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlbQuanLyUser.setForeground(new java.awt.Color(255, 255, 255));
+        jlbQuanLyUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbQuanLyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user_50px.png"))); // NOI18N
+        jlbQuanLyUser.setText("QUẢN LÝ NGƯỜI DÙNG");
+
+        javax.swing.GroupLayout jpnQuanLyUserLayout = new javax.swing.GroupLayout(jpnQuanLyUser);
+        jpnQuanLyUser.setLayout(jpnQuanLyUserLayout);
+        jpnQuanLyUserLayout.setHorizontalGroup(
+            jpnQuanLyUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnQuanLyUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbQuanLyUser)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpnQuanLyUserLayout.setVerticalGroup(
+            jpnQuanLyUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlbQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
         jpnRoot.setLayout(jpnRootLayout);
         jpnRootLayout.setHorizontalGroup(
@@ -270,7 +294,8 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jpnTuyenXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnVeXe, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpnQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,10 +318,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelHome, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                    .addComponent(jLabelHome, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addGap(33, 33, 33)
                 .addComponent(jpnVeXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jpnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +333,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jpnCaLamViec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jpnQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jpnQuanLyUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jlbDangXuat)
                 .addGap(51, 51, 51))
         );
@@ -412,6 +439,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jlbDangXuat;
     private javax.swing.JLabel jlbNhanVien;
     private javax.swing.JLabel jlbQuanLy;
+    private javax.swing.JLabel jlbQuanLyUser;
     private javax.swing.JLabel jlbThongKe;
     private javax.swing.JLabel jlbTuyenXe;
     private javax.swing.JLabel jlbVeXe;
@@ -419,6 +447,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jpnChuyenXe;
     private javax.swing.JPanel jpnNhanVien;
     private javax.swing.JPanel jpnQuanLy;
+    private javax.swing.JPanel jpnQuanLyUser;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnThongKe;
     private javax.swing.JPanel jpnTuyenXe;
