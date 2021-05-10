@@ -7,6 +7,7 @@ package MenuMain;
 
 import Controller.ChuyenManHinhController;
 import Login.Login;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.String;
@@ -24,7 +25,8 @@ public class MainMenu extends javax.swing.JFrame {
         setTitle("Bán Vé Xe Bus");
         ChuyenManHinhController controler= new ChuyenManHinhController(jpnView);
         controler.setView(jpnVeXe, jlbVeXe,taiKhoan);
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icon/bus_16px.png")));
+        this.setTitle("Quản lý");
         List<DanhMucBean> listIteam= new ArrayList<>();
 //        listIteam.add(new DanhMucBean("TrangChu", jpnTrangChu, jlbTrangChu));
         listIteam.add(new DanhMucBean("NhanVien", jpnNhanVien, jlbNhanVien));

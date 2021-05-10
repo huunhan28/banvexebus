@@ -41,8 +41,8 @@ public class Login extends javax.swing.JDialog {
         initComponents();
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserDKNS.getDateEditor();
         editor.setEditable(false);
-        
-        final int Max_X=200;
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icon/bus_16px.png")));
+        final int Max_X=180;
         final int Min_X=30;
         
         Thread animation = new Thread(new Runnable() {
@@ -62,7 +62,7 @@ public class Login extends javax.swing.JDialog {
                     }
                     if(x>Max_X){
                         checked=false;
-                        x=200;
+                        x=180;
                     }
                     if(x<Min_X){
                         checked=true;
@@ -592,7 +592,7 @@ public class Login extends javax.swing.JDialog {
 
         jLabelAnimation.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelAnimation.setForeground(new java.awt.Color(54, 33, 89));
-        jLabelAnimation.setText("Thực hiện tốt các biện pháp 5K để chống dịch");
+        jLabelAnimation.setText("Thực hiện tốt các biện pháp 5K để chống dịch COVID-19");
 
         javax.swing.GroupLayout jPanelAnimationLayout = new javax.swing.GroupLayout(jPanelAnimation);
         jPanelAnimation.setLayout(jPanelAnimationLayout);
@@ -776,7 +776,7 @@ public class Login extends javax.swing.JDialog {
 
     private void jButtonDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDangNhapActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        jDialog1.setVisible(false);
         Login dialog = new Login(new javax.swing.JFrame(), true);
             dialog.setVisible(true);
     }//GEN-LAST:event_jButtonDangNhapActionPerformed

@@ -9,6 +9,7 @@ import Login.Login;
 import Controller.Connect;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
+import java.awt.Toolkit;
 import static java.lang.Math.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -36,7 +37,8 @@ public class MuaaVe extends javax.swing.JFrame {
         layTuyen();
         layTram();
         clock();
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icon/bus_16px.png")));
+        this.setTitle("Khách Hàng");
         switchPanels(jPanelMuaVe);
         setColor(jPanelList1);
         resetColor(jPanelList2);
@@ -535,6 +537,9 @@ public class MuaaVe extends javax.swing.JFrame {
         jComboBoxTimKiemVe = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextFieldHuyVe = new javax.swing.JTextField();
+        jButtonHuyVe = new javax.swing.JButton();
         jPanelTaiKhoan = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButtonDoiMatKhau = new javax.swing.JButton();
@@ -800,6 +805,11 @@ public class MuaaVe extends javax.swing.JFrame {
                 "Mã vé", "Mã chuyến xe", "Số chỗ đặt", "Mã loại vé", "Nơi đi", "Nơi đến", "Tài khoản"
             }
         ));
+        jTableTimVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTimVeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableTimVe);
 
         jComboBoxTimKiemVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã vé", "Nơi đi", "Nơi đến" }));
@@ -808,6 +818,16 @@ public class MuaaVe extends javax.swing.JFrame {
 
         jLabel20.setText("Tìm kiếm theo:");
 
+        jLabel25.setText("Nhập mã vé cần hủy:");
+
+        jButtonHuyVe.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonHuyVe.setText("Hủy vé");
+        jButtonHuyVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHuyVeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelTimVeLayout = new javax.swing.GroupLayout(jPanelTimVe);
         jPanelTimVe.setLayout(jPanelTimVeLayout);
         jPanelTimVeLayout.setHorizontalGroup(
@@ -815,37 +835,49 @@ public class MuaaVe extends javax.swing.JFrame {
             .addGroup(jPanelTimVeLayout.createSequentialGroup()
                 .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelTimVeLayout.createSequentialGroup()
-                        .addGap(351, 351, 351)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanelTimVeLayout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTimVeLayout.createSequentialGroup()
-                                .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxTimKiemVe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldTimVe, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19)
+                                .addGroup(jPanelTimVeLayout.createSequentialGroup()
+                                    .addComponent(jButtonHuyVe)
+                                    .addGap(82, 82, 82)))
+                            .addGroup(jPanelTimVeLayout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldHuyVe, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(394, 394, 394))))
+                    .addGroup(jPanelTimVeLayout.createSequentialGroup()
+                        .addGap(351, 351, 351)
+                        .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxTimKiemVe, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldTimVe, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanelTimVeLayout.setVerticalGroup(
             jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTimVeLayout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(102, 102, 102)
+                .addGap(26, 26, 26)
                 .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxTimKiemVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20))
-                .addGap(36, 36, 36)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBoxTimKiemVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jTextFieldTimVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanelTimVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jTextFieldHuyVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jButtonHuyVe)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanelTimVe, "card3");
@@ -1565,6 +1597,7 @@ public class MuaaVe extends javax.swing.JFrame {
             PreparedStatement ps= ketNoi.prepareStatement("update TaiKhoan set MatKhau='"+matKhau+"' where TaiKhoan='"+jLabelTaiKhoan.getText()+"'");
             
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu thành công!");
         }catch(SQLException e){
             System.out.println("loi luu thay doi thong tin TK");
         }
@@ -2259,6 +2292,51 @@ public class MuaaVe extends javax.swing.JFrame {
         jComboBoxDen.setSelectedItem(jComboBoxDiTu.getSelectedItem());
         jComboBoxDiTu.setSelectedItem(temp);
     }//GEN-LAST:event_jLabel24MouseClicked
+
+    private void jTableTimVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTimVeMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableTimVe.getModel();
+        int selectedRow = jTableTimVe.getSelectedRow();
+
+        jTextFieldHuyVe.setText(model.getValueAt(selectedRow, 0).toString());
+    }//GEN-LAST:event_jTableTimVeMouseClicked
+
+    private void jButtonHuyVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHuyVeActionPerformed
+        // TODO add your handling code here:
+        int ret = JOptionPane.showConfirmDialog(this, "Ban chac chan muon huy?", "Xac nhan", 0);
+
+        if (ret == JOptionPane.CANCEL_OPTION) {
+            return;
+        } else {
+            int maVe = Integer.parseInt(jTextFieldHuyVe.getText().trim());
+            int tonTai = 0;
+            Connection connect = Connect.layKetNoi();
+            try {
+                PreparedStatement ps = connect.prepareStatement("select *\n"
+                        + "from Ve \n"
+                        + "where  MaVe='" + maVe + "'");
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    tonTai = 1;
+                }
+            } catch (SQLException e) {
+                System.out.println("loi lay thong tin ve cu");
+            }
+            if (tonTai == 0) {
+                JOptionPane.showMessageDialog(this, "Ma ve khong ton tai");
+                return;
+            }
+            Connection ketNoi = Connect.layKetNoi();
+            try {
+                PreparedStatement ps = ketNoi.prepareStatement("delete from Ve where MaVe='" + maVe + "'");
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("loi xoa ve" + e.getMessage());
+            }
+        }
+        String tk=jLabelTaiKhoan.getText();
+        layVe(tk);
+    }//GEN-LAST:event_jButtonHuyVeActionPerformed
     public void switchPanels(JPanel panel){
         jLayeredPane1.removeAll();
         jLayeredPane1.add(panel);
@@ -2317,6 +2395,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JButton btnTimDuong;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDoiMatKhau;
+    private javax.swing.JButton jButtonHuyVe;
     private javax.swing.JComboBox<String> jComboBoxDen;
     private javax.swing.JComboBox<String> jComboBoxDiTu;
     private javax.swing.JComboBox<String> jComboBoxMVChuyen;
@@ -2344,6 +2423,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2385,6 +2465,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JTable jTableKetQuaTuyen;
     private javax.swing.JTable jTableTimVe;
     private javax.swing.JTable jTableTraCuuTuyen;
+    private javax.swing.JTextField jTextFieldHuyVe;
     private javax.swing.JTextField jTextFieldMVSoGhe;
     private javax.swing.JTextField jTextFieldPassSua;
     private javax.swing.JTextField jTextFieldTimVe;

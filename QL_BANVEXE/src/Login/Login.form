@@ -684,7 +684,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="59" green="21" red="36" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Th&#x1ef1;c hi&#x1ec7;n t&#x1ed1;t c&#xe1;c bi&#x1ec7;n ph&#xe1;p 5K &#x111;&#x1ec3; ch&#x1ed1;ng d&#x1ecb;ch"/>
+                <Property name="text" type="java.lang.String" value="Th&#x1ef1;c hi&#x1ec7;n t&#x1ed1;t c&#xe1;c bi&#x1ec7;n ph&#xe1;p 5K &#x111;&#x1ec3; ch&#x1ed1;ng d&#x1ecb;ch COVID-19"/>
               </Properties>
             </Component>
           </SubComponents>
