@@ -11,6 +11,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Controller.Connect;
+import static KhachHang.MuaaVe.isNumeric;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -39,6 +41,41 @@ public class Login extends javax.swing.JDialog {
         initComponents();
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserDKNS.getDateEditor();
         editor.setEditable(false);
+        
+        final int Max_X=200;
+        final int Min_X=30;
+        
+        Thread animation = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int x=30;
+                int y=10;
+                boolean checked;
+                checked=true;
+                while (true) {  
+                    if(checked){
+                        jLabelAnimation.setLocation(x, y);
+                        x+=10;
+                    }else{
+                        jLabelAnimation.setLocation(x, y);
+                        x-=10;
+                    }
+                    if(x>Max_X){
+                        checked=false;
+                        x=200;
+                    }
+                    if(x<Min_X){
+                        checked=true;
+                    }
+                    try{
+                        Thread.sleep(200);
+                    }catch(Exception e){
+                        
+                    }
+                }
+            }
+        });
+        animation.start();
     }
     public String layTaiKhoanVaMatKhauTuSDT(String sdt){
         String TKvaMK="";
@@ -164,16 +201,30 @@ public class Login extends javax.swing.JDialog {
                 //da dang nhap duoc
                 System.out.println("dang nhap duoc");
                 this.dispose();
-                new MuaaVe(taiKhoan).setVisible(true);
-//                new muave(jTextFieldTaiKhoan.getText()).setVisible(true);
-//                this.dispose();
+                SplashScreen1 sp1 = new SplashScreen1();
+                sp1.setVisible(true);
+                new java.util.Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        new MuaaVe(taiKhoan).setVisible(true);
+                        sp1.dispose();
+                    }
+                }, 1000 * 2);
+                
             }
             else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
                 //dang nhap tu cach admin
                 this.dispose();
-                new MainMenu(taiKhoan).setVisible(true);
-//                new quanli().setVisible(true);
-//                this.dispose();
+                SplashScreen1 sp1 = new SplashScreen1();
+                sp1.setVisible(true);
+                new java.util.Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        new MainMenu(taiKhoan).setVisible(true);  
+                        sp1.dispose();
+                    }
+                }, 1000 * 2);
+                           
             }else{
                 JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
                 System.out.println("sai thong tin dang nhap");
@@ -229,6 +280,10 @@ public class Login extends javax.swing.JDialog {
         show_hide_pass = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabelQuenMatKhau = new javax.swing.JLabel();
+        jPanelAnimation = new javax.swing.JPanel();
+        jLabelAnimation = new javax.swing.JLabel();
+
+        jDialog1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Tài khoản");
 
@@ -242,6 +297,9 @@ public class Login extends javax.swing.JDialog {
 
         jLabel7.setText("Mật khẩu");
 
+        jButtonDangKy.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonDangKy.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonDangKy.setForeground(new java.awt.Color(54, 33, 89));
         jButtonDangKy.setText("Đăng ký");
         jButtonDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +307,9 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        jButtonDangNhap.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonDangNhap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonDangNhap.setForeground(new java.awt.Color(54, 33, 89));
         jButtonDangNhap.setText("Đăng nhập");
         jButtonDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +330,7 @@ public class Login extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +361,7 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(jDateChooserDKNS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addComponent(jButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonDangNhap)))
                 .addGap(82, 82, 82))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -333,11 +394,11 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDKDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(73, 73, 73)
+                .addGap(18, 18, 18)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDangKy)
                     .addComponent(jButtonDangNhap))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -527,12 +588,37 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        jPanelAnimation.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabelAnimation.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelAnimation.setForeground(new java.awt.Color(54, 33, 89));
+        jLabelAnimation.setText("Thực hiện tốt các biện pháp 5K để chống dịch");
+
+        javax.swing.GroupLayout jPanelAnimationLayout = new javax.swing.GroupLayout(jPanelAnimation);
+        jPanelAnimation.setLayout(jPanelAnimationLayout);
+        jPanelAnimationLayout.setHorizontalGroup(
+            jPanelAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnimationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelAnimation)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelAnimationLayout.setVerticalGroup(
+            jPanelAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAnimationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelAnimation)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
@@ -559,25 +645,27 @@ public class Login extends javax.swing.JDialog {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtTenDN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 10, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(show_hide_pass)))))
-                .addGap(20, 20, 20))
+                .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(20, 20, 20)
                         .addComponent(jlbName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,26 +676,27 @@ public class Login extends javax.swing.JDialog {
                             .addComponent(show_hide_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addComponent(jLabelQuenMatKhau)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLogin)
                             .addComponent(btnThoat))
                         .addGap(30, 30, 30)
                         .addComponent(jLabelDangKy)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(104, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,6 +704,7 @@ public class Login extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
@@ -645,6 +735,10 @@ public class Login extends javax.swing.JDialog {
         String ten=jTextFieldDKTen.getText().trim();
         String tk=jTextFieldDKTK.getText().trim();
         String matKhau=jTextFieldDKMK.getText().trim();
+        //-----------------------------
+        if(isNumeric(sdt)==false){
+            JOptionPane.showMessageDialog(this,"So dien thoai phai la so .VD:023456789");
+        }
         //================================
         java.sql.Date ngaysinh = null;
         try {
@@ -834,12 +928,14 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAnimation;
     private javax.swing.JLabel jLabelDangKy;
     private javax.swing.JLabel jLabelHome;
     private javax.swing.JLabel jLabelQuenMatKhau;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelAnimation;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
