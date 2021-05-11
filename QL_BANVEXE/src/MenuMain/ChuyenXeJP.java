@@ -123,7 +123,8 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         Connection ketNoi = Connect.layKetNoi();
         Vector vt;
         try {
-            PreparedStatement ps = ketNoi.prepareStatement("select * from ChuyenXe");
+            PreparedStatement ps = ketNoi.prepareStatement("select * from ChuyenXe\n" +
+                                                            "ORDER BY Ngay ASC");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 vt = new Vector();

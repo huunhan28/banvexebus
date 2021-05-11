@@ -1636,7 +1636,7 @@ public class MuaaVe extends javax.swing.JFrame {
             NoiDen.setText("Nơi đến: "+noiDen);
             HoTen.setText("Họ tên: "+jLabelHello.getText());
             GiaVe.setText("Giá vé: "+gia*soGhe);
-            GioNgayDat.setText("Giờ "+chuyen+", ngày "+day+", tháng "+month+", năm "+year);
+            GioNgayDat.setText("Giờ "+chuyen+", ngày "+day+", tháng "+month+", năm 20"+year);
             NgayMua.setText("TP.Hồ Chí Minh, ngày "+calNgay+" tháng "+calThang+" năm "+calNam);
             
             jDialog1.setSize(622, 400);

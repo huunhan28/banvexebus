@@ -428,7 +428,7 @@ void layChuyenXeChuaPhanCong(){
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -648,7 +648,7 @@ void layChuyenXeChuaPhanCong(){
                     .addComponent(jButton2))
                 .addGap(44, 44, 44)
                 .addComponent(btnXuatFile)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
