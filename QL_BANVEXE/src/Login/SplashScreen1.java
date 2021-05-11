@@ -5,6 +5,7 @@
  */
 package Login;
 
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +20,8 @@ public class SplashScreen1 extends javax.swing.JFrame {
      */
     public SplashScreen1() {
         initComponents();
-            
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icon/bus_16px.png")));
+        this.setTitle("Loading...");    
     }
 
     /**

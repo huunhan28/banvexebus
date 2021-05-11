@@ -383,7 +383,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void jlbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseClicked
         // TODO add your handling code here:
         int ret= JOptionPane.showConfirmDialog(this, "Ban chac chan muon dang xuat?","Xac nhan",0);
-
         if(ret == JOptionPane.CANCEL_OPTION){
             return;
         }else if(ret == JOptionPane.OK_OPTION){

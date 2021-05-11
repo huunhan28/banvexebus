@@ -77,6 +77,18 @@ public class Login extends javax.swing.JDialog {
         });
         animation.start();
     }
+    public String chuanHoaHoTen(String name){
+        name=name.toLowerCase();
+        name=name.replaceAll("\\s+", " ");
+        char namechar[]=name.toCharArray();
+        namechar[0]=(char) (namechar[0]-32);
+        for (int i = 0; i < name.length(); i++) {
+            if(namechar[i]==' '){
+                namechar[i+1]=(char)(namechar[i+1]-32);
+            }
+        }
+        return String.valueOf(namechar);
+    }
     public String layTaiKhoanVaMatKhauTuSDT(String sdt){
         String TKvaMK="";
         Connection ketNoi=Connect.layKetNoi();
@@ -209,7 +221,7 @@ public class Login extends javax.swing.JDialog {
                         new MuaaVe(taiKhoan).setVisible(true);
                         sp1.dispose();
                     }
-                }, 1000 * 2);
+                }, 700 * 2);
                 
             }
             else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
@@ -223,7 +235,7 @@ public class Login extends javax.swing.JDialog {
                         new MainMenu(taiKhoan).setVisible(true);  
                         sp1.dispose();
                     }
-                }, 1000 * 2);
+                }, 700 * 2);
                            
             }else{
                 JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
@@ -736,8 +748,14 @@ public class Login extends javax.swing.JDialog {
         String tk=jTextFieldDKTK.getText().trim();
         String matKhau=jTextFieldDKMK.getText().trim();
         //-----------------------------
-        if(isNumeric(sdt)==false){
-            JOptionPane.showMessageDialog(this,"So dien thoai phai la so .VD:023456789");
+        if(isNumeric(sdt)==false||sdt.length()!=10){
+            JOptionPane.showMessageDialog(this, "So dien thoai phai co 10 chu so");
+            return;
+        }
+        char[] ktSDT=sdt.toCharArray();
+        if(ktSDT[0]!='0'){
+            JOptionPane.showMessageDialog(this, "So dien thoai khong dung dinh dang");
+            return;
         }
         //================================
         java.sql.Date ngaysinh = null;
@@ -752,6 +770,8 @@ public class Login extends javax.swing.JDialog {
         }
         //==================
         System.out.println(ngaysinh);
+        
+        ten=chuanHoaHoTen(ten);
 
         String diachi=jTextFieldDKDC.getText().trim();
 

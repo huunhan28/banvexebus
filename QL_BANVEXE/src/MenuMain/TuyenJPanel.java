@@ -22,6 +22,7 @@ public class TuyenJPanel extends javax.swing.JPanel {
     public TuyenJPanel(String taiKhoan) {
         initComponents();
         layTuyen();
+        layTuyenTram();
         layKhachHang(taiKhoan);
     }
     void layKhachHang(String taiKhoan){
@@ -44,7 +45,7 @@ public class TuyenJPanel extends javax.swing.JPanel {
         }
         
     }
-void layTuyen(){
+    void layTuyen(){
         dtm= (DefaultTableModel) jTableTuyen.getModel();
         dtm.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -65,6 +66,30 @@ void layTuyen(){
             ketNoi.close();
         } catch (SQLException ex) {
             System.out.println("loi lay tuyen");
+        }
+    }
+    void layTuyenTram(){
+        dtm= (DefaultTableModel) jTableTuyenTram.getModel();
+        dtm.setNumRows(0);
+        Connection ketNoi=Connect.layKetNoi();
+        Vector vt;
+        try {
+            PreparedStatement ps=ketNoi.prepareStatement("select * from TuyenTram");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                vt= new Vector();
+                vt.add(rs.getString(1));
+                vt.add(rs.getString(2));
+                vt.add(rs.getString(3));
+                dtm.addRow(vt);
+                
+            }
+            jTableTuyenTram.setModel(dtm);
+            ps.close();
+            rs.close();
+            ketNoi.close();
+        } catch (SQLException ex) {
+            System.out.println("loi lay tuyen tram");
         }
     }
     public int kiemTraTramTonTai(String s) {
@@ -140,6 +165,7 @@ void layTuyen(){
         jLabel1BaoLoiTramDiQua = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabelDinhDangTram = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -151,7 +177,7 @@ void layTuyen(){
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTuyen = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableTuyenTram = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
@@ -321,6 +347,8 @@ void layTuyen(){
         ));
         jScrollPane4.setViewportView(jTable1);
 
+        jLabelDinhDangTram.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -352,7 +380,8 @@ void layTuyen(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2))
                     .addComponent(jLabel1BaoLoiTramDiQua, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDinhDangTram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -372,11 +401,13 @@ void layTuyen(){
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelDinhDangTram, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1BaoLoiTramDiQua, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -488,15 +519,15 @@ void layTuyen(){
         });
         jScrollPane1.setViewportView(jTableTuyen);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTuyenTram.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã Tuyến", "Mã Trạm"
+                "Mã Tuyến", "Mã Trạm", "Thời gian tuyến đến trạm"
             }
         ));
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(jTableTuyenTram);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("DANH SÁCH TUYẾN - TRẠM");
@@ -512,12 +543,15 @@ void layTuyen(){
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel8)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel13))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -533,7 +567,7 @@ void layTuyen(){
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                     .addComponent(jScrollPane5))
                 .addContainerGap())
         );
@@ -562,6 +596,12 @@ void layTuyen(){
             return;
         }
         String cacTramDiQua=jTextAreaDSTramDiQua.getText().trim();
+        String cacTramDiQua1=cacTramDiQua+"-";
+        if(!cacTramDiQua1.matches("(([a-zA-Z0-9\\s+]+)-)+")){
+            JOptionPane.showMessageDialog(this,"Chua dung dinh dang(vd:tram1-tram2)");
+            return;
+        }
+        cacTramDiQua=cacTramDiQua.replaceAll("\\s+", " ");
         String []tram1=cacTramDiQua.split("-");
         String []tram=new String[100];
         for (int i = 0; i < tram1.length; i++) {
@@ -569,7 +609,7 @@ void layTuyen(){
         }
         System.out.println("flag");
         if(tram1.length<2){
-            System.out.println("so tram khong duoc nho hon 2");
+            JOptionPane.showMessageDialog(this,"so tram khong duoc nho hon 2");
             return;
         }
         for(int i=0;i<tram1.length;i++){
@@ -766,9 +806,15 @@ void layTuyen(){
         // TODO add your handling code here:
         
         dtm1= (DefaultTableModel) jTable1.getModel();
+        jLabelDinhDangTram.setText("");
         jLabel1BaoLoiTramDiQua.setText("");
         
         String cacTramDiQua=jTextAreaDSTramDiQua.getText().trim();
+        String cacTramDiQua1=cacTramDiQua+"-";
+        if(!cacTramDiQua1.matches("(([a-zA-Z0-9\\s+]+)-)+")){
+            jLabelDinhDangTram.setText("Chua dung dinh dang(vd:tram1-tram2)");
+        }
+        cacTramDiQua=cacTramDiQua.replaceAll("\\s+", " ");
         String []tram1=cacTramDiQua.split("-");
         String []tram=new String[100];
         for (int i = 0; i < tram1.length; i++) {
@@ -852,6 +898,7 @@ void layTuyen(){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDinhDangTram;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -866,8 +913,8 @@ void layTuyen(){
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableTuyen;
+    private javax.swing.JTable jTableTuyenTram;
     private javax.swing.JTextArea jTextAreaDSTG;
     private javax.swing.JTextArea jTextAreaDSTramDiQua;
     private javax.swing.JTextField jTextFieldMaTuyen;

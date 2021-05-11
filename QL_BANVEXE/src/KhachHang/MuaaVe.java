@@ -512,6 +512,19 @@ public class MuaaVe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jLabel26 = new javax.swing.JLabel();
+        MaVe = new javax.swing.JLabel();
+        MaChuyenXe = new javax.swing.JLabel();
+        SoCho = new javax.swing.JLabel();
+        MaLoaiVe = new javax.swing.JLabel();
+        NoiDi = new javax.swing.JLabel();
+        NoiDen = new javax.swing.JLabel();
+        HoTen = new javax.swing.JLabel();
+        GiaVe = new javax.swing.JLabel();
+        GioNgayDat = new javax.swing.JLabel();
+        NgayMua = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jPanelList = new javax.swing.JPanel();
         jPanelList1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -590,6 +603,112 @@ public class MuaaVe extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabelHello = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+
+        jDialog1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel26.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel26.setText("VÉ XE BUS");
+
+        MaVe.setText("Mã vé: ......................");
+
+        MaChuyenXe.setText("Mã chuyến xe: ....................");
+
+        SoCho.setText("Số chỗ đặt: ..................");
+
+        MaLoaiVe.setText("Mã loại vé: ....................");
+
+        NoiDi.setText("Nơi đi: .........................");
+
+        NoiDen.setText("Nơi đến:......................");
+
+        HoTen.setText("Họ tên: .........................");
+
+        GiaVe.setText("Giá vé: ............................");
+
+        GioNgayDat.setText("Giờ......,ngày.....tháng....năm....");
+
+        NgayMua.setText("TP. Hồ Chí Minh, ngày.... tháng .... năm .........");
+
+        jButton2.setText("Đóng");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(NgayMua, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(MaVe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(MaChuyenXe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(SoCho, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(MaLoaiVe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(GioNgayDat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addGap(270, 270, 270)
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jDialog1Layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(HoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(GiaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(NoiDi, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NoiDen, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addComponent(jButton2)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel26)
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaVe)
+                    .addComponent(HoTen))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaChuyenXe)
+                    .addComponent(GiaVe))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SoCho)
+                    .addComponent(NoiDi))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaLoaiVe)
+                    .addComponent(NoiDen))
+                .addGap(18, 18, 18)
+                .addComponent(GioNgayDat)
+                .addGap(45, 45, 45)
+                .addComponent(NgayMua)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -841,9 +960,7 @@ public class MuaaVe extends javax.swing.JFrame {
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel19)
-                                .addGroup(jPanelTimVeLayout.createSequentialGroup()
-                                    .addComponent(jButtonHuyVe)
-                                    .addGap(82, 82, 82)))
+                                .addComponent(jButtonHuyVe))
                             .addGroup(jPanelTimVeLayout.createSequentialGroup()
                                 .addComponent(jLabel25)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1504,10 +1621,27 @@ public class MuaaVe extends javax.swing.JFrame {
                 }
             }
             //lay tong so cho dat
-            
+            Calendar cal = new GregorianCalendar(); 
+            int calNgay=cal.get(Calendar.DAY_OF_MONTH);
+            int calThang=cal.get(Calendar.MONTH)+1;
+            int calNam=cal.get(Calendar.YEAR);
 
             muaVe(maChuyen,maVe,soGhe,maLoaiVe,noiDi,noiDen,taiKhoan);
-            JOptionPane.showMessageDialog(this, "Mua thanh cong! Ma ve cua ban la:"+maVe+".");
+            //JOptionPane.showMessageDialog(this, "Mua thanh cong! Ma ve cua ban la:"+maVe+".");
+            MaVe.setText("Mã vé: "+maVe);
+            MaChuyenXe.setText("Mã chuyến xe: "+maChuyen);
+            SoCho.setText("Số chỗ đặt: "+soGhe);
+            MaLoaiVe.setText("Mã loại vé: "+maLoaiVe);
+            NoiDi.setText("Nơi đi: "+noiDi);
+            NoiDen.setText("Nơi đến: "+noiDen);
+            HoTen.setText("Họ tên: "+jLabelHello.getText());
+            GiaVe.setText("Giá vé: "+gia*soGhe);
+            GioNgayDat.setText("Giờ "+chuyen+", ngày "+day+", tháng "+month+", năm "+year);
+            NgayMua.setText("TP.Hồ Chí Minh, ngày "+calNgay+" tháng "+calThang+" năm "+calNam);
+            
+            jDialog1.setSize(622, 400);
+            jDialog1.setLocation(400, 400);
+            jDialog1.setVisible(true);
             layVe(jLabelTaiKhoan.getText());
 
         }
@@ -2337,6 +2471,11 @@ public class MuaaVe extends javax.swing.JFrame {
         String tk=jLabelTaiKhoan.getText();
         layVe(tk);
     }//GEN-LAST:event_jButtonHuyVeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jDialog1.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
     public void switchPanels(JPanel panel){
         jLayeredPane1.removeAll();
         jLayeredPane1.add(panel);
@@ -2392,8 +2531,19 @@ public class MuaaVe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GiaVe;
+    private javax.swing.JLabel GioNgayDat;
+    private javax.swing.JLabel HoTen;
+    private javax.swing.JLabel MaChuyenXe;
+    private javax.swing.JLabel MaLoaiVe;
+    private javax.swing.JLabel MaVe;
+    private javax.swing.JLabel NgayMua;
+    private javax.swing.JLabel NoiDen;
+    private javax.swing.JLabel NoiDi;
+    private javax.swing.JLabel SoCho;
     private javax.swing.JButton btnTimDuong;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonDoiMatKhau;
     private javax.swing.JButton jButtonHuyVe;
     private javax.swing.JComboBox<String> jComboBoxDen;
@@ -2406,6 +2556,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSoChuyen;
     private javax.swing.JComboBox<String> jComboBoxTimKiemVe;
     private com.toedter.calendar.JDateChooser jDateChooserMVNgay;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2424,6 +2575,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

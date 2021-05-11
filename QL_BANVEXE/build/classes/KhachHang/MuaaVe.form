@@ -1,6 +1,182 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="jDialog1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="NgayMua" min="-2" pref="313" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="MaVe" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="MaChuyenXe" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="SoCho" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="MaLoaiVe" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="GioNgayDat" alignment="0" pref="253" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+                                  <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                          <Component id="HoTen" min="-2" pref="253" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="GiaVe" min="-2" pref="253" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="NoiDi" min="-2" pref="253" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="NoiDen" min="-2" pref="253" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="MaVe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="HoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="MaChuyenXe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="GiaVe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="SoCho" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NoiDi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="MaLoaiVe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NoiDen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="GioNgayDat" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="NgayMua" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel26">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="V&#xc9; XE BUS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="MaVe">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe3; v&#xe9;: ......................"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="MaChuyenXe">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe3; chuy&#x1ebf;n xe: ...................."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="SoCho">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; ch&#x1ed7; &#x111;&#x1eb7;t: .................."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="MaLoaiVe">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe3; lo&#x1ea1;i v&#xe9;: ...................."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="NoiDi">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#x1a1;i &#x111;i: ........................."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="NoiDen">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#x1a1;i &#x111;&#x1ebf;n:......................"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="HoTen">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="H&#x1ecd; t&#xea;n: ........................."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="GiaVe">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gi&#xe1; v&#xe9;: ............................"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="GioNgayDat">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gi&#x1edd;......,ng&#xe0;y.....th&#xe1;ng....n&#x103;m...."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="NgayMua">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TP. H&#x1ed3; Ch&#xed; Minh, ng&#xe0;y.... th&#xe1;ng .... n&#x103;m ........."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -394,10 +570,7 @@
                                       <Component id="jLabel20" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="641" max="-2" attributes="0"/>
                                       <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jButtonHuyVe" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jButtonHuyVe" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel25" min="-2" max="-2" attributes="0"/>

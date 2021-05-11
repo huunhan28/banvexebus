@@ -104,6 +104,7 @@ void layChuyenXeChuaPhanCong(){
                 vt.add(rs.getString(4));
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
+                vt.add(rs.getString(7));
                 dtm2.addRow(vt);
                 
             }
@@ -374,7 +375,7 @@ void layChuyenXeChuaPhanCong(){
 
             },
             new String [] {
-                "Mã ca", "Mã chuyến xe", "Mã nhân viên", "Biển số", "Thời gian khởi hàn", "Thời gian đến"
+                "Mã ca", "Mã chuyến xe", "Mã NV lái xe", "Mã NV kiểm vé", "Biển số", "Thời gian khởi hàn", "Thời gian đến"
             }
         ));
         jTableCaLamViec.addMouseListener(new java.awt.event.MouseAdapter() {
