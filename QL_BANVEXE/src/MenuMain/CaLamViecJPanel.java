@@ -35,7 +35,8 @@ public class CaLamViecJPanel extends javax.swing.JPanel {
     public CaLamViecJPanel(String taiKhoan) {
         initComponents();
         layChuyen();
-        layNhanVien();
+        layNhanVienLX();
+        layNhanVienKV();
         layXe();
         layCaLamViec();
         layChuyenXeChuaPhanCong();
@@ -128,16 +129,28 @@ void layChuyenXeChuaPhanCong(){
             System.out.println("loi lay chuyen xe");
         }
     }
-    void layNhanVien(){
+    void layNhanVienLX(){
         Connection ketNoi=Connect.layKetNoi();
         try{
-            PreparedStatement ps= ketNoi.prepareStatement("select MaNV from NhanVien");
+            PreparedStatement ps= ketNoi.prepareStatement("select MaNV from NhanVien where ChucVu='Lai xe'");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                jComboBoxCLVNV.addItem(rs.getString("MaNV"));
+                jComboBoxCLVNVLX.addItem(rs.getString("MaNV"));
             }
         }catch(SQLException e){
-            System.out.println("loi lay nhan vien");
+            System.out.println("loi lay nhan vien lai xe");
+        }
+    }
+    void layNhanVienKV(){
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select MaNV from NhanVien where ChucVu='Kiem ve'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                jComboBoxCLVNVKV.addItem(rs.getString("MaNV"));
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay nhan vien kiem ve");
         }
     }
     void layXe(){
@@ -202,6 +215,86 @@ void layChuyenXeChuaPhanCong(){
                 }
             }catch(SQLException e){
                 System.out.println("loi lay thong tin tu ca lam viec de kiem tra trung nhan vien");
+            }
+        
+        return trung;
+    }
+    public int kTTrungTuyenNgayTTTGNVKV(String tuyen,String ngay,String trangThai,String gioKH,String gioDen,String nhanVienKV){
+        int trung=0;
+        String ngay1="";
+        String tuyen1="";
+        String trangThai1="";
+        String ThoiGianKhoiHanh1="";
+        String ThoiGianDen1="";
+        String NhanVienKV1="";
+            Connection ketNoi=Connect.layKetNoi();
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("select MaChuyenXe,ThoiGianKhoiHanh,ThoiGianDen,MaNVKiemVe from CaLamViec ");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    String []thongTin=rs.getString(1).split("-");
+                    ngay1=thongTin[0];
+                    tuyen1=thongTin[2];
+                    trangThai1=thongTin[3];
+                    ThoiGianKhoiHanh1=rs.getString(2);
+                    ThoiGianDen1=rs.getString(3);
+                    NhanVienKV1=rs.getString(4);
+                    if(tuyen.equals(tuyen1)&&ngay.equals(ngay1)&&trangThai.equals(trangThai1)&&
+                            gioKH.equals(ThoiGianDen1)&&nhanVienKV.equals(NhanVienKV1)){
+                        return 1;
+                    }
+                    if(tuyen.equals(tuyen1)&&ngay.equals(ngay1)&&trangThai.equals(trangThai1)&&
+                            gioDen.equals(ThoiGianKhoiHanh1)&&nhanVienKV.equals(NhanVienKV1)){
+                        return 1;
+                    }
+                    if(ngay.equals(ngay1)&&
+                            gioKH.equals(ThoiGianKhoiHanh1)&&nhanVienKV.equals(NhanVienKV1)){
+                        return 1;
+                    }
+                    
+                }
+            }catch(SQLException e){
+                System.out.println("loi lay thong tin tu ca lam viec de kiem tra trung nhan vien"+e.getMessage());
+            }
+        
+        return trung;
+    }
+    public int kTTrungTuyenNgayTTTGNVLX(String tuyen,String ngay,String trangThai,String gioKH,String gioDen,String nhanVienLX){
+        int trung=0;
+        String ngay1="";
+        String tuyen1="";
+        String trangThai1="";
+        String ThoiGianKhoiHanh1="";
+        String ThoiGianDen1="";
+        String NhanVienLX1="";
+            Connection ketNoi=Connect.layKetNoi();
+            try{
+                PreparedStatement ps= ketNoi.prepareStatement("select MaChuyenXe,ThoiGianKhoiHanh,ThoiGianDen,MaNVLaiXe from CaLamViec ");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    String []thongTin=rs.getString(1).split("-");
+                    ngay1=thongTin[0];
+                    tuyen1=thongTin[2];
+                    trangThai1=thongTin[3];
+                    ThoiGianKhoiHanh1=rs.getString(2);
+                    ThoiGianDen1=rs.getString(3);
+                    NhanVienLX1=rs.getString(4);
+                    if(tuyen.equals(tuyen1)&&ngay.equals(ngay1)&&trangThai.equals(trangThai1)&&
+                            gioKH.equals(ThoiGianDen1)&&nhanVienLX.equals(NhanVienLX1)){
+                        return 1;
+                    }
+                    if(tuyen.equals(tuyen1)&&ngay.equals(ngay1)&&trangThai.equals(trangThai1)&&
+                            gioDen.equals(ThoiGianKhoiHanh1)&&nhanVienLX.equals(NhanVienLX1)){
+                        return 1;
+                    }
+                    if(ngay.equals(ngay1)&&
+                            gioKH.equals(ThoiGianKhoiHanh1)&&nhanVienLX.equals(NhanVienLX1)){
+                        return 1;
+                    }
+                    
+                }
+            }catch(SQLException e){
+                System.out.println("loi lay thong tin tu ca lam viec de kiem tra trung nhan vien"+e.getMessage());
             }
         
         return trung;
@@ -297,12 +390,14 @@ void layChuyenXeChuaPhanCong(){
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jComboBoxCLVCX = new javax.swing.JComboBox<>();
-        jComboBoxCLVNV = new javax.swing.JComboBox<>();
+        jComboBoxCLVNVLX = new javax.swing.JComboBox<>();
         jComboBoxCLVBS = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         btnXuatFile = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBoxCLVNVKV = new javax.swing.JComboBox<>();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -546,7 +641,7 @@ void layChuyenXeChuaPhanCong(){
         jLabel21.setText("Mã chuyến xe:");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel22.setText("Mã nhân viên");
+        jLabel22.setText("Mã NV lái xe:");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Biển số:");
@@ -584,25 +679,14 @@ void layChuyenXeChuaPhanCong(){
             }
         });
 
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel24.setText("Mã NV kiểm vé:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCLVMaCa)
-                    .addComponent(jComboBoxCLVCX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxCLVNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxCLVBS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(btnThem)
@@ -618,6 +702,22 @@ void layChuyenXeChuaPhanCong(){
                         .addGap(52, 52, 52)
                         .addComponent(jLabel9)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel23))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxCLVBS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCLVMaCa)
+                    .addComponent(jComboBoxCLVCX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCLVNVLX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCLVNVKV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,12 +735,16 @@ void layChuyenXeChuaPhanCong(){
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jComboBoxCLVNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCLVNVLX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCLVNVKV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jComboBoxCLVBS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
+                .addGap(101, 101, 101)
                 .addComponent(jLabel9)
                 .addGap(96, 96, 96)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -726,7 +830,7 @@ void layChuyenXeChuaPhanCong(){
 
         jTextFieldCLVMaCa.setText(model.getValueAt(selectedRow, 0).toString());
         jComboBoxCLVCX.setSelectedItem(model.getValueAt(selectedRow, 1).toString());
-        jComboBoxCLVNV.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
+        jComboBoxCLVNVLX.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
         jComboBoxCLVBS.setSelectedItem(model.getValueAt(selectedRow, 3).toString());
 
     }//GEN-LAST:event_jTableCaLamViecMouseClicked
@@ -747,7 +851,8 @@ void layChuyenXeChuaPhanCong(){
         tuyen=thongTin[2];
         trangThai=thongTin[3];
 
-        String maNV=(String) jComboBoxCLVNV.getSelectedItem();
+        String maNVLX=(String) jComboBoxCLVNVLX.getSelectedItem();
+        String maNVKV=(String) jComboBoxCLVNVKV.getSelectedItem();
         String bienSoXe=(String) jComboBoxCLVBS.getSelectedItem();
         String thoiGianKhoiHanh=thongTin[1];
         String thoiGianDen="";
@@ -775,24 +880,28 @@ void layChuyenXeChuaPhanCong(){
         if(thoiGianKhoiHanh.equals("19h")){
             thoiGianDen="21h";
         }
-        if(kTTrungTuyenNgayTTTGNV(tuyen,ngay,trangThai,thoiGianKhoiHanh,thoiGianDen,maNV)==1){
-            JOptionPane.showMessageDialog(this, "Nhan vien nay thoi diem nay da den cuoi tram. Khong the phan cong");
+        if(kTTrungTuyenNgayTTTGNVLX(tuyen,ngay,trangThai,thoiGianKhoiHanh,thoiGianDen,maNVLX)==1){
+            JOptionPane.showMessageDialog(this, "Nhan vien lai xe nay thoi diem nay khong the phan cong");
             return;
         }
-
+        if(kTTrungTuyenNgayTTTGNVKV(tuyen,ngay,trangThai,thoiGianKhoiHanh,thoiGianDen,maNVKV)==1){
+            JOptionPane.showMessageDialog(this, "Nhan vien kiem ve nay thoi diem nay khong the phan cong");
+            return;
+        }
         if(kTTrungTuyenNgayTTTGXe(tuyen,ngay,trangThai,thoiGianKhoiHanh,thoiGianDen,bienSoXe)==1){
-            JOptionPane.showMessageDialog(this, "Xe nay vao thoi diem nay da den cuoi tram. Khong the phan cong");
+            JOptionPane.showMessageDialog(this, "Xe nay vao thoi diem nay khong the phan cong");
             return;
         }
         if(maCa!=""){
             try{
-                PreparedStatement ps= ketNoi.prepareStatement("insert into CaLamViec values(?,?,?,?,?,?)");
+                PreparedStatement ps= ketNoi.prepareStatement("insert into CaLamViec values(?,?,?,?,?,?,?)");
                 ps.setString(1,maCa );
                 ps.setString(2,maCX );
-                ps.setString(3,maNV );
-                ps.setString(4,bienSoXe );
-                ps.setString(5,thoiGianKhoiHanh );
-                ps.setString(6,thoiGianDen );
+                ps.setString(3,maNVLX );
+                ps.setString(4,maNVKV );
+                ps.setString(5,bienSoXe );
+                ps.setString(6,thoiGianKhoiHanh );
+                ps.setString(7,thoiGianDen );
                 ps.executeUpdate();
             }catch(SQLException e){
                 System.out.println("loi luu them ca lam viec");
@@ -843,7 +952,8 @@ void layChuyenXeChuaPhanCong(){
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBoxCLVBS;
     private javax.swing.JComboBox<String> jComboBoxCLVCX;
-    private javax.swing.JComboBox<String> jComboBoxCLVNV;
+    private javax.swing.JComboBox<String> jComboBoxCLVNVKV;
+    private javax.swing.JComboBox<String> jComboBoxCLVNVLX;
     private javax.swing.JComboBox<String> jComboBoxTKCaLamViec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
@@ -852,6 +962,7 @@ void layChuyenXeChuaPhanCong(){
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

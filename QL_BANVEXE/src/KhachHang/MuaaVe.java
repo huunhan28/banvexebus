@@ -309,8 +309,9 @@ public class MuaaVe extends javax.swing.JFrame {
         dtm.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
         Vector vt;
+        java.util.Date date=new java.util.Date(); 
         try {
-            PreparedStatement ps=ketNoi.prepareStatement("select * from Ve where TaiKhoan='"+taiKhoan+"'");
+            PreparedStatement ps=ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe and TaiKhoan='"+taiKhoan+"'");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 vt= new Vector();
@@ -321,6 +322,12 @@ public class MuaaVe extends javax.swing.JFrame {
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
                 vt.add(rs.getString(7));
+                
+                if(rs.getDate(11).after(date)){
+                    vt.add("Chua su dung");
+                }else{
+                    vt.add("Da su dung");
+                }
                 
                 dtm.addRow(vt);
                 
@@ -530,6 +537,29 @@ public class MuaaVe extends javax.swing.JFrame {
             System.out.println("loi lay ThoiGianTuyenDenTram");
         }
         return abs(tramDen-tramDi);
+    }
+    //--------------kiemTraNgayCuaVeNhoHonNgayHienTai
+    public boolean kiemTraNgayCuaVeNhoHonNgayHienTai(String maVe){
+        Connection ketNoi=Connect.layKetNoi();
+        java.util.Date date=new java.util.Date(); 
+        try {
+            PreparedStatement ps=ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe and MaVe='"+maVe+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                if(rs.getDate(11).after(date)){
+                    return false;
+                }else{
+                    return true;
+                }
+                
+            }
+            ps.close();
+            rs.close();
+            ketNoi.close();
+        } catch (SQLException ex) {
+            System.out.println("loi lay ve");
+        }
+        return false;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -949,7 +979,7 @@ public class MuaaVe extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã vé", "Mã chuyến xe", "Số chỗ đặt", "Mã loại vé", "Nơi đi", "Nơi đến", "Tài khoản"
+                "Mã vé", "Mã chuyến xe", "Số chỗ đặt", "Mã loại vé", "Nơi đi", "Nơi đến", "Tài khoản", "Trạng thái"
             }
         ));
         jTableTimVe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2478,10 +2508,11 @@ public class MuaaVe extends javax.swing.JFrame {
     private void jButtonHuyVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHuyVeActionPerformed
         // TODO add your handling code here:
         int ret = JOptionPane.showConfirmDialog(this, "Ban chac chan muon huy?", "Xac nhan", 0);
-
+        
         if (ret == JOptionPane.CANCEL_OPTION) {
             return;
         } else {
+            
             int maVe = Integer.parseInt(jTextFieldHuyVe.getText().trim());
             int tonTai = 0;
             Connection connect = Connect.layKetNoi();
@@ -2498,6 +2529,10 @@ public class MuaaVe extends javax.swing.JFrame {
             }
             if (tonTai == 0) {
                 JOptionPane.showMessageDialog(this, "Ma ve khong ton tai");
+                return;
+            }
+            if(kiemTraNgayCuaVeNhoHonNgayHienTai(maVe+"")){
+                JOptionPane.showMessageDialog(this, "Ve da su dung khong xoa duoc!");
                 return;
             }
             Connection ketNoi = Connect.layKetNoi();
