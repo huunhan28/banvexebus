@@ -41,7 +41,6 @@ public class MainMenu extends javax.swing.JFrame {
         
         controler.setEvent(listIteam,taiKhoan);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

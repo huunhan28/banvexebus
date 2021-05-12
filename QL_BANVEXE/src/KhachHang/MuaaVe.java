@@ -118,7 +118,7 @@ public class MuaaVe extends javax.swing.JFrame {
         Connection ketNoi=Connect.layKetNoi();
         Vector vt;
         try{
-            PreparedStatement ps= ketNoi.prepareStatement("select MaTuyen from Tuyen");
+            PreparedStatement ps= ketNoi.prepareStatement("select TenTuyen from Tuyen");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 //jComboBoxMVTuyen.addItem(rs.getString("MaTuyen"));
@@ -137,14 +137,14 @@ public class MuaaVe extends javax.swing.JFrame {
     void layTram(){
         Connection ketNoi=Connect.layKetNoi();
         try{
-            PreparedStatement ps= ketNoi.prepareStatement("select MaTram from Tram");
+            PreparedStatement ps= ketNoi.prepareStatement("select TenTram from Tram");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                jComboBoxMVNoiDi.addItem(rs.getString("MaTram"));
-                jComboBoxMVNoiDen.addItem(rs.getString("MaTram"));
+                jComboBoxMVNoiDi.addItem(rs.getString("TenTram"));
+                jComboBoxMVNoiDen.addItem(rs.getString("TenTram"));
                 //---------------------------------
-                jComboBoxDiTu.addItem(rs.getString("MaTram"));
-                jComboBoxDen.addItem(rs.getString("MaTram"));
+                jComboBoxDiTu.addItem(rs.getString("TenTram"));
+                jComboBoxDen.addItem(rs.getString("TenTram"));
             }
         }catch(SQLException e){
             System.out.println("loi lay tram");
@@ -176,6 +176,34 @@ public class MuaaVe extends javax.swing.JFrame {
             System.out.println("loi lay ma loai ve");
         }
         return maLV;
+    }
+    String layMaTuyenTuTenTuyen(String tuyen){
+        String maTuyen="";
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select MaTuyen from Tuyen where TenTuyen='"+tuyen+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                maTuyen=rs.getString(1);
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay ma tuyen tu ten tuyen ");
+        }
+        return maTuyen;
+    }
+    String layMaTramTuTenTram(String tram){
+        String maTram="";
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select MaTram from Tram where TenTram='"+tram+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                maTram=rs.getString(1);
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay ma tram tu ten tram ");
+        }
+        return maTram;
     }
     float layGiaVeTuTenLoaiVe(String tenLoaiVe){
         float gia=0;
@@ -1284,7 +1312,7 @@ public class MuaaVe extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTraCuuTuyenLayout.setVerticalGroup(
             jPanelTraCuuTuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1357,7 +1385,7 @@ public class MuaaVe extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel24)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTimDuongLayout.setVerticalGroup(
@@ -1398,8 +1426,10 @@ public class MuaaVe extends javax.swing.JFrame {
                 .addComponent(jPanelList5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelList6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLayeredPane2)
+                .addContainerGap(517, Short.MAX_VALUE))
+            .addGroup(jPanelTraCuuLayout.createSequentialGroup()
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelTraCuuLayout.setVerticalGroup(
             jPanelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1540,10 +1570,14 @@ public class MuaaVe extends javax.swing.JFrame {
             
             int soGhe=Integer.parseInt(soGhe1);
             String taiKhoan=jLabelTaiKhoan.getText();
-            String tuyen=(String) jComboBoxMVTuyen.getSelectedItem() ;
             String chuyen=(String) jComboBoxMVChuyen.getSelectedItem();
+            //--------------------------
+            String tuyen=(String) jComboBoxMVTuyen.getSelectedItem() ;
+            tuyen=layMaTuyenTuTenTuyen(tuyen);
             String noiDi=(String) jComboBoxMVNoiDi.getSelectedItem();
+            noiDi=layMaTramTuTenTram(noiDi);
             String noiDen=(String) jComboBoxMVNoiDen.getSelectedItem();
+            noiDen=layMaTramTuTenTram(noiDen);
             //kiem tra trang thai di
             boolean trangThaiDi=ktTrangThaiDi(tuyen,noiDi,noiDen);
             
@@ -1898,7 +1932,7 @@ public class MuaaVe extends javax.swing.JFrame {
         int selectedRow = jTableTraCuuTuyen.getSelectedRow();
 
         String maTuyen=model.getValueAt(selectedRow, 0).toString();
-        
+        maTuyen=layMaTuyenTuTenTuyen(maTuyen);
         //        Connection ketNoi=Connect.layKetNoi();
 //        try{
 //            PreparedStatement ps= ketNoi.prepareStatement("select Tram from TuyenTram where Tuyen='"+jComboBoxMVTuyen.getSelectedItem()+"'");
@@ -1910,6 +1944,7 @@ public class MuaaVe extends javax.swing.JFrame {
 //        }catch(SQLException e){
 //            System.out.println("loi lay tram");
 //        }
+        System.out.println("vao day roi1");
     dtm3= (DefaultTableModel) jTableKetQuaTuyen.getModel();
         dtm3.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
@@ -1923,6 +1958,7 @@ public class MuaaVe extends javax.swing.JFrame {
                 vt.add(rs.getString(1));
                 vt.add(rs.getString(2)+" phút");
                 dtm3.addRow(vt);
+                System.out.println("vao day roii");
             }
             jTableKetQuaTuyen.setModel(dtm3);
             ps.close();
@@ -2216,8 +2252,9 @@ public class MuaaVe extends javax.swing.JFrame {
             
             
             Vector vt3;
-            vt3= new Vector();
+            
             for (int l = 0; l < k; l++) {
+                vt3= new Vector();
                 vt3.add(tuyenChung[l]);
                 vt3.add("Tu "+noiDi+" den "+noiDen);
                 vt3.add(thoiGianTuTramToiTramTrongTuyen(tuyenChung[l], noiDi, noiDen));
@@ -2265,10 +2302,10 @@ public class MuaaVe extends javax.swing.JFrame {
             dtm5= (DefaultTableModel) jTableKetQuaTimDuong.getModel();
             dtm5.setNumRows(0);
             Vector vt;
-            vt= new Vector();
-            
             for (int l = 0; l < k; l++) {
+                vt= new Vector();
                 vt.add(tuyenChung[l]);
+                vt.add("Tu "+noiDi+" den "+noiDen);
                 vt.add(thoiGianTuTramToiTramTrongTuyen(tuyenChung[l], noiDi, noiDen));
                 dtm5.addRow(vt);
             }
@@ -2353,9 +2390,12 @@ public class MuaaVe extends javax.swing.JFrame {
             dtm5= (DefaultTableModel) jTableKetQuaTimDuong.getModel();
             dtm5.setNumRows(0);
             Vector vt;
-            vt= new Vector();
+            
             for (int l = 0; l < k; l++) {
+                vt= new Vector();
                 vt.add(tuyenChung[l]);
+                vt.add("Tu "+noiDi+" den "+noiDen);
+                vt.add(thoiGianTuTramToiTramTrongTuyen(tuyenChung[l], noiDi, noiDen));
                 dtm5.addRow(vt);
             }
             if(k==0){

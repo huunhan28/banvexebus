@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Controller.Connect;
 import static KhachHang.MuaaVe.isNumeric;
+import MenuMain.NoTi;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -215,13 +216,14 @@ public class Login extends javax.swing.JDialog {
                 this.dispose();
                 SplashScreen1 sp1 = new SplashScreen1();
                 sp1.setVisible(true);
+                new NoTi("Dang nhap thanh cong").setVisible(true);
                 new java.util.Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
                         new MuaaVe(taiKhoan).setVisible(true);
                         sp1.dispose();
                     }
-                }, 700 * 2);
+                }, 1000 * 2);
                 
             }
             else if(ktUser(txtTenDN.getText(),jPassword.getText())==2){
@@ -229,13 +231,14 @@ public class Login extends javax.swing.JDialog {
                 this.dispose();
                 SplashScreen1 sp1 = new SplashScreen1();
                 sp1.setVisible(true);
+                new NoTi("Dang nhap thanh cong").setVisible(true);
                 new java.util.Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
                         new MainMenu(taiKhoan).setVisible(true);  
                         sp1.dispose();
                     }
-                }, 700 * 2);
+                }, 1000 * 2);
                            
             }else{
                 JOptionPane.showMessageDialog(this, "Sai thong tin dang nhap");
