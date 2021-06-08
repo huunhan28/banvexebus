@@ -904,7 +904,7 @@ void layChuyenXeChuaPhanCong(){
                 ps.setString(7,thoiGianDen );
                 ps.executeUpdate();
             }catch(SQLException e){
-                System.out.println("loi luu them ca lam viec");
+                System.out.println("loi luu them ca lam viec"+e.getMessage());
             }
         }else{
             JOptionPane.showMessageDialog(this, "Khong duoc chua thong tin rong!");

@@ -64,7 +64,7 @@ public class NoTi extends javax.swing.JFrame {
         txt_Content.setForeground(new java.awt.Color(0, 204, 0));
         txt_Content.setText("jLabel1");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/notisuccess(1).gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/notisuccess(2).gif"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
