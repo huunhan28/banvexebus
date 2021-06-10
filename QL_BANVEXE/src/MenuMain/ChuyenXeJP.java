@@ -132,7 +132,12 @@ public class ChuyenXeJP extends javax.swing.JPanel {
                 vt.add(rs.getString(2));
                 vt.add(rs.getString(3));
                 vt.add(rs.getString(4));
-                vt.add(rs.getString(5));
+                if(rs.getString(5).equals("1")){
+                    vt.add("Luot di");
+                }else{
+                    vt.add("Luot ve");
+                }
+                //vt.add(rs.getString(5));
 
                 dtm.addRow(vt);
 
@@ -485,7 +490,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setText("Trạng thái đi:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Luot di", "Luot Ve" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Luot di", "Luot ve" }));
 
         jbtInDanhSach.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbtInDanhSach.setForeground(new java.awt.Color(0, 153, 0));
@@ -599,7 +604,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtCapNhat)
                     .addComponent(jbtXoa)
@@ -711,7 +716,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         String trangThai = (String) jComboBox1.getSelectedItem();
         boolean trangThaiDi = true;
         String trangThai1 = "";
-        if (trangThai.equals("Lượt đi")) {
+        if (trangThai.equals("Luot di")) {
             trangThaiDi = true;
             trangThai1 = "1";
         } else {

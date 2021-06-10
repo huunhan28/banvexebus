@@ -1012,13 +1012,13 @@ public class Login extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "So dien thoai nay chua co tai khoan!");
             return;
         }
-//        SpeedSMSAPI api  = new SpeedSMSAPI("El8lwPHKKWNnse25b2dTuQ1_aa_ko7Gq");
-//        try {
-//                String result = api.sendSMS(sdtLayMatKhau, "VEXEBUS Ma xac thuc OTP cua ban la:"+randomOTP, 5, "6db49df0e78b2f8d");
-//                System.out.println(result);
-//        } catch (IOException e) {
-//                e.printStackTrace();
-//        }
+        SpeedSMSAPI api  = new SpeedSMSAPI("El8lwPHKKWNnse25b2dTuQ1_aa_ko7Gq");
+        try {
+                String result = api.sendSMS(sdtLayMatKhau, "VEXEBUS Ma xac thuc OTP cua ban la:"+randomOTP, 5, "6db49df0e78b2f8d");
+                System.out.println(result);
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
         JOptionPane.showMessageDialog(this, "Tin nhan da duoc gui ve so dien thoai:"+sdtLayMatKhau);
         this.dispose();
         jDialogQuenMatKhau.setVisible(false);

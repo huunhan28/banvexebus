@@ -746,9 +746,9 @@ public class TuyenJPanel extends javax.swing.JPanel {
     private void jTextFieldTKTuyenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTKTuyenKeyReleased
         // TODO add your handling code here:
         String timTheo=(String) jComboBoxTKTuyen.getSelectedItem();
-
+        dtm= (DefaultTableModel) jTableTuyen.getModel();
         dtm.setNumRows(0);
-        jTableTuyen.setModel(dtm);
+        //jTableTuyen.setModel(dtm);
         Vector vt;
         Connection ketNoi=Connect.layKetNoi();
         PreparedStatement ps;

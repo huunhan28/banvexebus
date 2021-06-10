@@ -1599,11 +1599,14 @@ public class MuaaVe extends javax.swing.JFrame {
             int tonTaiChuyenXe=0;
             
             int soGhe=Integer.parseInt(soGhe1);
+            if(soGhe>30){
+                JOptionPane.showMessageDialog(this, "So ghe toi da la 30");
+            }
             String taiKhoan=jLabelTaiKhoan.getText();
             String chuyen=(String) jComboBoxMVChuyen.getSelectedItem();
             //--------------------------
             String tuyen=(String) jComboBoxMVTuyen.getSelectedItem() ;
-            tuyen=layMaTuyenTuTenTuyen(tuyen);
+            //tuyen=layMaTuyenTuTenTuyen(tuyen);
             String noiDi=(String) jComboBoxMVNoiDi.getSelectedItem();
             noiDi=layMaTramTuTenTram(noiDi);
             String noiDen=(String) jComboBoxMVNoiDen.getSelectedItem();
@@ -1639,7 +1642,7 @@ public class MuaaVe extends javax.swing.JFrame {
             }else{
                 trangThai="0";
             }
-            
+            System.out.println(tuyen);
             String maChuyen=day+month+year+"-"+chuyen+"-"+tuyen+"-"+trangThai;
             System.out.println(maChuyen);
             //lay ma ve
@@ -1655,6 +1658,9 @@ public class MuaaVe extends javax.swing.JFrame {
                     if(rs.getString("MaChuyenXe").equalsIgnoreCase(maChuyen)){
                         tongSoChoDat=rs.getInt("TongSoChoDat")+soGhe;
                         tonTaiChuyenXe=1;
+                        if(tongSoChoDat>=30){
+                            JOptionPane.showMessageDialog(this, "Chuyen xe nay hien khong du cho trong voi so ghe nay");
+                        }
                     }
                 }
             }catch(SQLException e){
@@ -1681,7 +1687,7 @@ public class MuaaVe extends javax.swing.JFrame {
                     ps.setBoolean(5, trangThaiDi);
                     ps.executeUpdate();
                 }catch(SQLException e){
-                    System.out.println("loi luu chuyen xe");
+                    System.out.println("loi luu chuyen xe"+e.getMessage());
                 }
             }
             //lay tong so cho dat
@@ -1689,7 +1695,7 @@ public class MuaaVe extends javax.swing.JFrame {
             int calNgay=cal.get(Calendar.DAY_OF_MONTH);
             int calThang=cal.get(Calendar.MONTH)+1;
             int calNam=cal.get(Calendar.YEAR);
-
+            
             muaVe(maChuyen,maVe,soGhe,maLoaiVe,noiDi,noiDen,taiKhoan);
             //JOptionPane.showMessageDialog(this, "Mua thanh cong! Ma ve cua ban la:"+maVe+".");
             MaVe.setText("Mã vé: "+maVe);
@@ -1900,11 +1906,12 @@ public class MuaaVe extends javax.swing.JFrame {
         }
         dtm.setNumRows(0);
         jTableTimVe.setModel(dtm);
+        java.util.Date date=new java.util.Date(); 
         Vector vt;
         Connection ketNoi=Connect.layKetNoi();
         PreparedStatement ps;
         try {
-            ps=ketNoi.prepareStatement("select * from Ve where TaiKhoan='"+jLabelTaiKhoan.getText()+"' and "+theLoai+" LIKE'%"+jTextFieldTimVe.getText()+"%'");
+            ps=ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe and TaiKhoan='"+jLabelTaiKhoan.getText()+"' and "+theLoai+" LIKE'%"+jTextFieldTimVe.getText()+"%'");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 vt= new Vector();
@@ -1915,6 +1922,11 @@ public class MuaaVe extends javax.swing.JFrame {
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
                 vt.add(rs.getString(7));
+                if(rs.getDate(11).after(date)){
+                    vt.add("Chua su dung");
+                }else{
+                    vt.add("Da su dung");
+                }
                 dtm.addRow(vt);
                 
             }
