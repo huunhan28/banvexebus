@@ -593,7 +593,7 @@
                     <StringItem index="3" value="11h"/>
                     <StringItem index="4" value="13h"/>
                     <StringItem index="5" value="15h"/>
-                    <StringItem index="6" value="17"/>
+                    <StringItem index="6" value="17h"/>
                     <StringItem index="7" value="19h"/>
                   </StringArray>
                 </Property>

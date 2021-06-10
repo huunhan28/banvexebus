@@ -55,7 +55,9 @@ public class ChuyenXeJP extends javax.swing.JPanel {
         editor.setEditable(false);
         java.util.Date date=new java.util.Date(); 
         txtDate.setMinSelectableDate(date);
-        
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
 
     void layKhachHang(String taiKhoan) {
@@ -485,7 +487,7 @@ public class ChuyenXeJP extends javax.swing.JPanel {
 
         jLabel9.setText("Mã chuyến xe được tạo tự động");
 
-        jComboBoxGioKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5h", "7h", "9h", "11h", "13h", "15h", "17", "19h" }));
+        jComboBoxGioKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5h", "7h", "9h", "11h", "13h", "15h", "17h", "19h" }));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setText("Trạng thái đi:");

@@ -24,6 +24,9 @@ public class TuyenJPanel extends javax.swing.JPanel {
         layTuyen();
         layTuyenTram();
         layKhachHang(taiKhoan);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     void layKhachHang(String taiKhoan){
         

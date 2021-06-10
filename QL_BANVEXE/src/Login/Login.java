@@ -46,6 +46,8 @@ public class Login extends javax.swing.JDialog {
         initComponents();
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserDKNS.getDateEditor();
         editor.setEditable(false);
+        java.util.Date date=new java.util.Date(); 
+        jDateChooserDKNS.setMaxSelectableDate(date);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icon/bus_16px.png")));
         final int Max_X=180;
         final int Min_X=30;

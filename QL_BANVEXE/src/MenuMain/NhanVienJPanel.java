@@ -52,6 +52,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateNS.getDateEditor();
         editor.setEditable(false);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     
     private void initTable(){

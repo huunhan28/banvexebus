@@ -52,6 +52,9 @@ public class VeXeJP extends javax.swing.JPanel {
          
          JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooserNgayKH.getDateEditor();
         editor.setEditable(false);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     
     public DefaultTableModel dtm;

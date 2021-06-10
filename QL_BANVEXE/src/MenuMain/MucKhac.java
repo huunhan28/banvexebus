@@ -33,6 +33,9 @@ DefaultTableModel dtm;
         resetColor(jPanelListLoaiVe);
         resetColor(jPanelListChucVu);
         setColor(jPanelListTram);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     void layKhachHang(String taiKhoan){
         

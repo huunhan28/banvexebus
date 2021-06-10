@@ -30,6 +30,9 @@ public class QuanLyUser extends javax.swing.JPanel {
         
         JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateNSKH.getDateEditor();
         editor.setEditable(false);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     void layTK(String taiKhoan){
         

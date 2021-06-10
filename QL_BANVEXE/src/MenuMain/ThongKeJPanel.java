@@ -40,6 +40,9 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         layBieuDoVSV();
         layBieuDoVT();
         layKhachHang(taiKhoan);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
 //    public String chuyenNgay(Date ngay){
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

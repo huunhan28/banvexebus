@@ -41,6 +41,9 @@ public class CaLamViecJPanel extends javax.swing.JPanel {
         layCaLamViec();
         layChuyenXeChuaPhanCong();
         layKhachHang(taiKhoan);
+        txtSDT.setEditable(false);
+        txtTenTK.setEditable(false);
+        txtHoTen.setEditable(false);
     }
     void layKhachHang(String taiKhoan){
         
@@ -242,7 +245,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay tgBD khong the bang thoi gian ket thuc, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioKH.equals(ThoiGianDen1)&&nhanVienKV.equals(NhanVienKV1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                              break;
                         }
                         return 1;
@@ -250,7 +254,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay thoi gian ket thuc khong the bang tgBD, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioDen.equals(ThoiGianKhoiHanh1)&&nhanVienKV.equals(NhanVienKV1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                             break;
                         }
                         return 1;
@@ -290,7 +295,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay tgBD khong the bang thoi gian ket thuc, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioKH.equals(ThoiGianDen1)&&nhanVienLX.equals(NhanVienLX1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                              break;
                         }
                         return 1;
@@ -298,7 +304,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay thoi gian ket thuc khong the bang tgBD, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioDen.equals(ThoiGianKhoiHanh1)&&nhanVienLX.equals(NhanVienLX1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                             break;
                         }
                         return 1;
@@ -339,7 +346,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay tgBD khong the bang thoi gian ket thuc, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioKH.equals(ThoiGianDen1)&&Xe.equals(Xe1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                              break;
                         }
                         return 1;
@@ -347,7 +355,8 @@ void layChuyenXeChuaPhanCong(){
                     //trong cung 1 ngay thoi gian ket thuc khong the bang tgBD, ngoai tru cung tuyen va khac luot
                     if(ngay.equals(ngay1)&&
                             gioDen.equals(ThoiGianKhoiHanh1)&&Xe.equals(Xe1)){
-                        if(tuyen.equals(tuyen1)&&trangThai!=trangThai1){
+                        if(tuyen.equals(tuyen1)&&!(trangThai.equals(trangThai1))){
+                            System.out.println("truong hop cho qua"+trangThai+" "+trangThai1);
                             break;
                         }
                         return 1;
