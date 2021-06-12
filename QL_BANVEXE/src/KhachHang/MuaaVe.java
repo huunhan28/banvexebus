@@ -309,7 +309,7 @@ public class MuaaVe extends javax.swing.JFrame {
         dtm.setNumRows(0);
         Connection ketNoi=Connect.layKetNoi();
         Vector vt;
-        java.util.Date date=new java.util.Date(); 
+        java.util.Date dateht=new java.util.Date(); 
         try {
             PreparedStatement ps=ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe and TaiKhoan='"+taiKhoan+"'");
             ResultSet rs=ps.executeQuery();
@@ -322,10 +322,42 @@ public class MuaaVe extends javax.swing.JFrame {
                 vt.add(rs.getString(5));
                 vt.add(rs.getString(6));
                 vt.add(rs.getString(7));
-                
-                if(rs.getDate(11).after(date)){
+                //------------------------
+                //kiem tra gio hien tai
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                String dateht1=sdf.format(dateht);
+                String dateDB=sdf.format(rs.getDate(11));
+                //------------------------
+                if(dateDB.equals(dateht1)){
+                    char chuyenchar[]=rs.getString(2).toCharArray();
+                    int soGioHT= java.time.LocalTime.now().getHour();
+                    String soGioChon;
+                    int soGioChonInt;
+                    if(isNumeric(chuyenchar[8]+"")){
+                        String s1=chuyenchar[7]+"";
+                        String s2=chuyenchar[8]+"";
+                        soGioChon=s1+s2;
+                        soGioChonInt=Integer.parseInt(soGioChon);
+                        if(soGioChonInt<=soGioHT){
+                            vt.add("Da su dung");
+                            System.out.println("test  :"+soGioChonInt);
+                        }else{
+                            vt.add("Chua su dung");
+                        }
+                    } else {
+                        soGioChon=chuyenchar[7]+"";
+                        soGioChonInt=Integer.parseInt(soGioChon);
+                        if(soGioChonInt<=soGioHT){
+                            vt.add("Da su dung");
+                            System.out.println("test  :"+soGioChonInt);
+                        }else{
+                            vt.add("Chua su dung");
+                        }
+                    }
+                    
+                }else if(rs.getDate(11).after(dateht)){
                     vt.add("Chua su dung");
-                }else{
+                }else if(rs.getDate(11).before(dateht)){
                     vt.add("Da su dung");
                 }
                 
@@ -558,6 +590,20 @@ public class MuaaVe extends javax.swing.JFrame {
             ketNoi.close();
         } catch (SQLException ex) {
             System.out.println("loi lay ve");
+        }
+        return false;
+    }
+    //kiemTraVeTuongTu
+    public boolean kiemTraVeTuongTu(String maChuyen, int soGhe, String maLoaiVe, String noiDi, String noiDen, String taiKhoan) {
+        Connection ketNoi=Connect.layKetNoi();
+        try{
+            PreparedStatement ps= ketNoi.prepareStatement("select * from Ve where MaChuyenXe='"+maChuyen+"' and SoChoDat='"+soGhe+"' and MaLoaiVe='"+maLoaiVe+"' and NoiDi='"+noiDi+"' and NoiDen='"+noiDen+"' and TaiKhoan='"+taiKhoan+"'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                return true;
+            }
+        }catch(SQLException e){
+            System.out.println("loi lay ve tuong tu");
         }
         return false;
     }
@@ -1582,7 +1628,7 @@ public class MuaaVe extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String soGhe1= jTextFieldMVSoGhe.getText().trim();
-        if(soGhe1.equals("")||jDateChooserMVNgay.getDateFormatString().equals("")){
+        if(soGhe1.equals("")||jDateChooserMVNgay.getDateFormatString().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "So ghe hoac ngay khong duoc trong");
             return;
         }
@@ -1647,6 +1693,35 @@ public class MuaaVe extends javax.swing.JFrame {
             System.out.println(maChuyen);
             //lay ma ve
             int maVe=layMaxMaVe()+1;
+            //kiem tra gio hien tai
+            java.util.Date dateht=new java.util.Date(); 
+            String dateht1=sdf.format(dateht);
+            if(dateht1.equals(date)){
+                char chuyenchar[]=chuyen.toCharArray();
+                int soGioHT= java.time.LocalTime.now().getHour();
+                String soGioChon;
+                int soGioChonInt;
+                if(isNumeric(chuyenchar[1]+"")){
+                    String s1=chuyenchar[0]+"";
+                    String s2=chuyenchar[1]+"";
+                    soGioChon=s1+s2;
+                    soGioChonInt=Integer.parseInt(soGioChon);
+                    if(soGioChonInt<=soGioHT){
+                        JOptionPane.showMessageDialog(this, "Cung ngay, so gio chon phai lon so gio hien tai.");
+                        
+                        return;
+                    }
+                } else {
+                    soGioChon=chuyenchar[0]+"";
+                    soGioChonInt=Integer.parseInt(soGioChon);
+                    if(soGioChonInt<=soGioHT){
+                        JOptionPane.showMessageDialog(this, "Cung ngay, so gio chon phai lon so gio hien tai.");
+                        
+                        return;
+                    }
+                }
+                
+            }
             //kiem tra chuyen
 
             int tongSoChoDat=soGhe;
@@ -1696,6 +1771,12 @@ public class MuaaVe extends javax.swing.JFrame {
             int calThang=cal.get(Calendar.MONTH)+1;
             int calNam=cal.get(Calendar.YEAR);
             
+            if(kiemTraVeTuongTu(maChuyen,soGhe,maLoaiVe,noiDi,noiDen,taiKhoan)==true){
+                int ret1 = JOptionPane.showConfirmDialog(this, "Ban da dat ve tuong tu, ban co muon tiep tuc?", "Xac nhan", 0);
+                if (ret1 == JOptionPane.NO_OPTION||ret1 == JOptionPane.CANCEL_OPTION) {
+                    return;
+                }
+            }
             muaVe(maChuyen,maVe,soGhe,maLoaiVe,noiDi,noiDen,taiKhoan);
             //JOptionPane.showMessageDialog(this, "Mua thanh cong! Ma ve cua ban la:"+maVe+".");
             MaVe.setText("Mã vé: "+maVe);

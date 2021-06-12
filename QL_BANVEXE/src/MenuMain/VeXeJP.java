@@ -7,6 +7,7 @@ package MenuMain;
 
 import Controller.ChuyenManHinhController;
 import Controller.Connect;
+import static KhachHang.MuaaVe.isNumeric;
 import Login.Login;
 import NhanVien.NhanVienQL;
 import NhanVien.NhanVienDAO;
@@ -64,7 +65,7 @@ public class VeXeJP extends javax.swing.JPanel {
         dtm.setNumRows(0);
         Connection ketNoi = Connect.layKetNoi();
         Vector vt;
-        java.util.Date date=new java.util.Date();  
+        java.util.Date dateht=new java.util.Date();  
         try {
             PreparedStatement ps = ketNoi.prepareStatement("select * from Ve,ChuyenXe where Ve.MaChuyenXe=ChuyenXe.MaChuyenXe");
             ResultSet rs = ps.executeQuery();
@@ -78,9 +79,42 @@ public class VeXeJP extends javax.swing.JPanel {
                 vt.add(rs.getString(6));
                 vt.add(rs.getString(7));
                 
-                if(rs.getDate(11).after(date)){
+                //------------------------
+                //kiem tra gio hien tai
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                String dateht1=sdf.format(dateht);
+                String dateDB=sdf.format(rs.getDate(11));
+                //------------------------
+                if(dateDB.equals(dateht1)){
+                    char chuyenchar[]=rs.getString(2).toCharArray();
+                    int soGioHT= java.time.LocalTime.now().getHour();
+                    String soGioChon;
+                    int soGioChonInt;
+                    if(isNumeric(chuyenchar[8]+"")){
+                        String s1=chuyenchar[7]+"";
+                        String s2=chuyenchar[8]+"";
+                        soGioChon=s1+s2;
+                        soGioChonInt=Integer.parseInt(soGioChon);
+                        if(soGioChonInt<=soGioHT){
+                            vt.add("Da su dung");
+                            System.out.println("test  :"+soGioChonInt);
+                        }else{
+                            vt.add("Chua su dung");
+                        }
+                    } else {
+                        soGioChon=chuyenchar[7]+"";
+                        soGioChonInt=Integer.parseInt(soGioChon);
+                        if(soGioChonInt<=soGioHT){
+                            vt.add("Da su dung");
+                            System.out.println("test  :"+soGioChonInt);
+                        }else{
+                            vt.add("Chua su dung");
+                        }
+                    }
+                    
+                }else if(rs.getDate(11).after(dateht)){
                     vt.add("Chua su dung");
-                }else{
+                }else if(rs.getDate(11).before(dateht)){
                     vt.add("Da su dung");
                 }
 
